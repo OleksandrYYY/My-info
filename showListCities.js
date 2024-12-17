@@ -1,7 +1,6 @@
-export function showListCities(citiesSelectedCountry, selectCity) {
-    const defaultOption = document.querySelector("#default-option-city");
+export function showListCities(citiesSelectedCountry, selectCity, defaultOptionCity) {
     selectCity.innerHTML = "";
-    selectCity.append(defaultOption);
+    selectCity.append(defaultOptionCity);
     console.log(citiesSelectedCountry);
     
     const sortCities = citiesSelectedCountry.sort((a, b) => {
