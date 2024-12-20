@@ -5,11 +5,15 @@ import { getDataWeatherCity } from "./getDataWeatherCity.js";
 import { showListCountries } from "./showListCountries.js";
 import { fetchApiCitiesByCountry } from "./fetchApiCitiesByCountry.js";
 import { showListCities } from "./showListCities.js";
+import { saveVisitedCountries } from "./saveVisitedCountries.js";
+import { showTableResults } from "./showTableResults.js";
+
+let allCountries = [];
+let visitedCountries;
 
 document.addEventListener("DOMContentLoaded", async() => {
     const formWeather = document.querySelector("#form-weather");
     const elemInputCountryName = document.querySelector("#name-country");
-    // const elemBtnWeatherCity = document.querySelector("#btn-weather-city");
     const conditionWeatherCity = document.createElement("div");
     const selectCountry = document.querySelector("#select-country");
     const selectCity = document.querySelector("#select-city");
@@ -17,12 +21,14 @@ document.addEventListener("DOMContentLoaded", async() => {
     const defaultOptionCountry = document.querySelector("#default-option-country");
     const defaultOptionCity = document.querySelector("#default-option-city");
 
+    const tableInformationOfCountries = document.querySelector("#all-info-countries");
+
     let selectCountryName = "";
     try {
         const response = await fetch("https://restcountries.com/v3.1/all");
-        const allCountries = await response.json();
+        allCountries = await response.json();
 
-        showListCountries(allCountries, selectCountry, defaultOptionCountry);        
+        showListCountries(allCountries, selectCountry);        
         
         elemInputCountryName.addEventListener("input", (event) => {
             const inputCountryName = event.target.value.trim().toLowerCase();
@@ -31,12 +37,11 @@ document.addEventListener("DOMContentLoaded", async() => {
             conditionWeatherCity.innerHTML = "";
 
             if (inputCountryName === "") {
-                showListCountries(allCountries, selectCountry, defaultOptionCountry);
+                showListCountries(allCountries, selectCountry);
                 selectCity.innerHTML = "";
                 selectCity.append(defaultOptionCity);
                 selectCity.disabled = true;
-                selectCountry.disabled = false;   
-                // 59
+                selectCountry.disabled = false;
             } else {
                 const filterCountries = allCountries.filter((country) => 
                     country.name.common.toLowerCase().startsWith(inputCountryName)
@@ -52,7 +57,6 @@ document.addEventListener("DOMContentLoaded", async() => {
                 } else {
                     formWeather.append(conditionWeatherCity)
                     selectCountry.disabled = true;
-                    // 75
                     conditionWeatherCity.innerHTML = "<p>Такої назви країни не існує.</p>"
                 }
                 
@@ -73,11 +77,33 @@ document.addEventListener("DOMContentLoaded", async() => {
         conditionWeatherCity.innerHTML = "";
         console.log("Вибрана країна назва:", selectCountryName);
 
+
+        const foundCountry = allCountries.find(country => country.name.common === selectCountryName );
+        console.log(foundCountry);
+        saveVisitedCountries(foundCountry, visitedCountries);
+        showTableResults(tableInformationOfCountries, foundCountry);
+
         if (selectCountryName) {
             try {
                 const citiesSelectedCountry = await fetchApiCitiesByCountry(selectCountryName);
                 console.log("Отримані міста:", citiesSelectedCountry);
-                showListCities(citiesSelectedCountry, selectCity, defaultOptionCity);
+
+                const foundCountry = allCountries.find(country => country.name.common === selectCountryName);
+                console.log(foundCountry);
+                let countryCode = "en";
+                if (foundCountry && foundCountry.languages) {
+                    const languagesKeys = Object.keys(foundCountry.languages);
+                    console.log(languagesKeys);
+                    if (languagesKeys.length > 0) {
+                        const firstLanguageCode = languagesKeys[0];
+                        console.log(firstLanguageCode);
+                        countryCode = firstLanguageCode.slice(0,2);
+                        console.log(countryCode);
+                    };
+                };
+
+
+                showListCities(citiesSelectedCountry, selectCity, defaultOptionCity, countryCode);
                 selectCity.disabled = false;
             } catch (error) {
                 console.error("Помилка при завантаженні міст:", error);

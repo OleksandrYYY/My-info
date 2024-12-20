@@ -1,11 +1,14 @@
-export function showListCountries(allCountries, selectCountry, defaultOptionCountry) {
+export function showListCountries(allCountries, selectCountry) {
     // selectCountry.innerHTML = "";
     // selectCountry.append(defaultOptionCountry);
 
+    // const sortCountries = allCountries.sort((a, b) => {
+    //     if (a.name.common < b.name.common) return -1;
+    //     if (a.name.common > b.name.common) return 1;
+    //     return 0;
+    // });
     const sortCountries = allCountries.sort((a, b) => {
-        if (a.name.common < b.name.common) return -1;
-        if (a.name.common > b.name.common) return 1;
-        return 0;
+        return a.name.common.localeCompare(b.name.common, 'en');
     });
 
     sortCountries.forEach((country) => {
