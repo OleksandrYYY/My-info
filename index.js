@@ -11,7 +11,7 @@ import { showTableResults } from "./showTableResults.js";
 import { fetchApiGetCountries } from "./fetchApiGetCountries.js";
 import { handlerEvents } from "./handlerEvents.js";
 import { fetchApiWeatherCity } from "./fetchApiWeatherCity.js";
-// import { getFilterResult } from "./getFilterResult.js";
+import { getFilterResult } from "./getFilterResult.js";
 
 let allCountries = [];
 let selectCountryName = "";
@@ -44,25 +44,10 @@ document.addEventListener("DOMContentLoaded", async() => {
             selectCity.innerHTML = "";
             selectCity.append(defaultOptionCity);
             selectCity.disabled = true;
+            elemInputCityName.disabled = true;
             selectCountry.disabled = false;
         } else {
-            const filterCountries = allCountries.filter((country) => 
-                country.name.common.toLowerCase().startsWith(inputCountryName)
-            );
-            
-            if (filterCountries.length > 0) {
-                filterCountries.forEach((country) => {
-                    const option = document.createElement("option");
-                    option.value = country.name.common;
-                    option.textContent = country.name.common;
-                    selectCountry.append(option);
-                });
-            } else {
-                formWeather.append(conditionWeatherCity)
-                selectCountry.disabled = true;
-                conditionWeatherCity.innerHTML = "<p>Такої назви країни не існує.</p>"
-            }
-            // getFilterResult(allCountries, inputCountryName, selectCountry, formWeather, conditionWeatherCity, true);
+            getFilterResult(allCountries, inputCountryName, selectCountry, formWeather, conditionWeatherCity, true);
             // selectCountry.disabled = true;
             
             selectCity.innerHTML = "";
@@ -106,31 +91,19 @@ document.addEventListener("DOMContentLoaded", async() => {
 
     handlerEvents(elemInputCityName, "input", (event) => {
         const inputCityName = event.target.value.trim().toLowerCase();
-        console.log(inputCityName);
-        
-        console.log(citiesSelectedCountry);
 
         selectCity.innerHTML = "";
         selectCity.append(defaultOptionCity);
 
-
-        // getFilterResult(citiesSelectedCountry, inputCityName, selectCity, formWeather, conditionWeatherCity, false);
-        const filterCities = citiesSelectedCountry.filter((city) => {
-            return city.toLowerCase().startsWith(inputCityName);
-        });
-        console.log(filterCities);
-
-        if (filterCities.length > 0) {
-            filterCities.forEach((city) => {
-                const option = document.createElement("option");
-                option.value = city;
-                option.textContent = city;
-                selectCity.append(option);
-            });
+        if (inputCityName === "") {
+            selectCountry.innerHTML = "";
+            selectCountry.append(defaultOptionCountry);
+            showListCountries(allCountries, selectCountry);
+            elemInputCityName.disabled = true;
+            selectCity.disabled = true;
         } else {
-            formWeather.append(conditionWeatherCity)
-            conditionWeatherCity.innerHTML = "<p>Такої назви країни не існує.</p>"
-        }
+            getFilterResult(citiesSelectedCountry, inputCityName, selectCity, formWeather, conditionWeatherCity, false);
+        };
     });
 
     fetchApiWeatherCity(selectCity, selectCountryName, conditionWeatherCity, formWeather);

@@ -1,5 +1,6 @@
 export function getDataWeatherCity(dataWeatherCity, conditionWeatherCity, formWeather) {
     const {current, location} = dataWeatherCity;
+    
     conditionWeatherCity.innerHTML = `
         <h2>Погода в ${location.name}, ${location.country}</h2>
         <p><strong>Температура:</strong> ${current.temp_c}°C</p>
