@@ -1,7 +1,5 @@
 "use strict";
-import { API_KEY } from "./constants.js";
-import { API_BASE_URL } from "./constants.js";
-import { getDataWeatherCity } from "./getDataWeatherCity.js";
+
 import { showListCountries } from "./showListCountries.js";
 import { fetchApiCitiesByCountry } from "./fetchApiCitiesByCountry.js";
 import { showListCities } from "./showListCities.js";
@@ -45,14 +43,15 @@ document.addEventListener("DOMContentLoaded", async() => {
             selectCity.append(defaultOptionCity);
             selectCity.disabled = true;
             elemInputCityName.disabled = true;
-            selectCountry.disabled = false;
         } else {
             getFilterResult(allCountries, inputCountryName, selectCountry, formWeather, conditionWeatherCity, true);
-            // selectCountry.disabled = true;
-            
+
+            elemInputCityName.value = "";
+
             selectCity.innerHTML = "";
             selectCity.append(defaultOptionCity);
             selectCity.disabled = true;
+            elemInputCityName.disabled = true;
         };
     });
 
@@ -91,16 +90,17 @@ document.addEventListener("DOMContentLoaded", async() => {
 
     handlerEvents(elemInputCityName, "input", (event) => {
         const inputCityName = event.target.value.trim().toLowerCase();
-
         selectCity.innerHTML = "";
         selectCity.append(defaultOptionCity);
 
         if (inputCityName === "") {
+            elemInputCountryName.value = "";
             selectCountry.innerHTML = "";
             selectCountry.append(defaultOptionCountry);
             showListCountries(allCountries, selectCountry);
             elemInputCityName.disabled = true;
             selectCity.disabled = true;
+            conditionWeatherCity.innerHTML = "";
         } else {
             getFilterResult(citiesSelectedCountry, inputCityName, selectCity, formWeather, conditionWeatherCity, false);
         };
