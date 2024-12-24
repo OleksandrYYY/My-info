@@ -1,25 +1,37 @@
-export function showTableResults(tableInformationOfCountries, foundCountry) {
-    const tableRowElem = document.createElement("tr");
+export function showTableResults(tableInformationOfCountries) {
+    let visitedCountries = JSON.parse(localStorage.getItem("countries")) || [];
 
-    const infoAboutNameCountry = document.createElement("th");
-    infoAboutNameCountry.textContent = foundCountry.name.common;
-    tableRowElem.append(infoAboutNameCountry);
+    const tbody = tableInformationOfCountries.querySelector("tbody");
+    tbody.innerHTML = "";
 
-    const infoAboutCapital = document.createElement("th");
-    infoAboutCapital.textContent = foundCountry.capital;
-    tableRowElem.append(infoAboutCapital);
+    if (visitedCountries.length === 0) {
+        console.log("Переглянутих країн немає.");
+        return;
+    }
 
-    const infoAboutCodeCountry = document.createElement("th");
-    infoAboutCodeCountry.textContent = foundCountry.cca2;
-    tableRowElem.append(infoAboutCodeCountry);
+    visitedCountries.forEach(country => {
+        const tableRowElem = document.createElement("tr");
 
-    const infoAboutPopulationCoutry = document.createElement("th");
-    infoAboutPopulationCoutry.textContent = foundCountry.population;
-    tableRowElem.append(infoAboutPopulationCoutry);
+        const infoAboutNameCountry = document.createElement("td");
+        infoAboutNameCountry.textContent = country.nameCountry;
+        tableRowElem.append(infoAboutNameCountry);
 
-    const infoAboutNeighboursCountry = document.createElement("th");
-    infoAboutNeighboursCountry.textContent = foundCountry.borders;
-    tableRowElem.append(infoAboutNeighboursCountry);
+        const infoAboutCapital = document.createElement("td");
+        infoAboutCapital.textContent = country.capital;
+        tableRowElem.append(infoAboutCapital);
 
-    tableInformationOfCountries.append(tableRowElem);
+        const infoAboutCodeCountry = document.createElement("td");
+        infoAboutCodeCountry.textContent = country.locale;
+        tableRowElem.append(infoAboutCodeCountry);
+
+        const infoAboutPopulationCountry = document.createElement("td");
+        infoAboutPopulationCountry.textContent = country.population;
+        tableRowElem.append(infoAboutPopulationCountry);
+
+        const infoAboutNeighboursCountry = document.createElement("td");
+        infoAboutNeighboursCountry.textContent = country.borders;
+        tableRowElem.append(infoAboutNeighboursCountry);
+
+        tbody.append(tableRowElem);
+    });
 };

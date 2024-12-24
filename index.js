@@ -5,7 +5,6 @@ import { fetchApiCitiesByCountry } from "./fetchApiCitiesByCountry.js";
 import { showListCities } from "./showListCities.js";
 import { saveVisitedCountries } from "./saveVisitedCountries.js";
 import { showTableResults } from "./showTableResults.js";
-
 import { fetchApiGetCountries } from "./fetchApiGetCountries.js";
 import { handlerEvents } from "./handlerEvents.js";
 import { fetchApiWeatherCity } from "./fetchApiWeatherCity.js";
@@ -13,10 +12,10 @@ import { getFilterResult } from "./getFilterResult.js";
 
 let allCountries = [];
 let selectCountryName = "";
-let visitedCountries;
 let citiesSelectedCountry;
 
 document.addEventListener("DOMContentLoaded", async() => {
+    // localStorage.clear();
     const formWeather = document.querySelector("#form-weather");
     const elemInputCountryName = document.querySelector("#name-country");
     const elemInputCityName = document.querySelector("#name-city");
@@ -30,6 +29,8 @@ document.addEventListener("DOMContentLoaded", async() => {
     
     allCountries = await fetchApiGetCountries(allCountries, selectCountry, selectCity);
     elemInputCityName.disabled = true;
+    
+    showTableResults(tableInformationOfCountries);
 
     handlerEvents(elemInputCountryName, "input", (event) => {
         const inputCountryName = event.target.value.trim().toLowerCase();
@@ -61,8 +62,8 @@ document.addEventListener("DOMContentLoaded", async() => {
         conditionWeatherCity.innerHTML = "";
 
         const foundCountry = allCountries.find(country => country.name.common === selectCountryName );
-        saveVisitedCountries(foundCountry, visitedCountries);
-        showTableResults(tableInformationOfCountries, foundCountry);
+        saveVisitedCountries(foundCountry);
+        showTableResults(tableInformationOfCountries);
 
         if (selectCountryName) {
             try {
