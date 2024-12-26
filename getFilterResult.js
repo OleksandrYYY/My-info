@@ -8,6 +8,7 @@ export function getFilterResult(arrayOfElements, inputValue, selectElem, formWea
     });
 
     if (filterElements.length > 0) {
+        conditionWeatherCity.innerHTML = "";
         filterElements.forEach((element) => {
             const option = document.createElement("option");
             if (isCountry) {

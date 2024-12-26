@@ -29,7 +29,7 @@ export function showTableResults(tableInformationOfCountries) {
         tableRowElem.append(infoAboutPopulationCountry);
 
         const infoAboutNeighboursCountry = document.createElement("td");
-        infoAboutNeighboursCountry.textContent = country.borders;
+        infoAboutNeighboursCountry.textContent = country.borders || "Немає";
         tableRowElem.append(infoAboutNeighboursCountry);
 
         tbody.append(tableRowElem);
