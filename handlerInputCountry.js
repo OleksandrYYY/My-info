@@ -1,7 +1,7 @@
 import { showListCountries } from "./showListCountries.js";
 import { getFilterResult } from "./getFilterResult.js";
 
-export function handlerInputCountry(initialData, event, allCountries) {
+export function handlerInputCountry(initialData, event) {
     
     const {
         selectCountry,
@@ -10,7 +10,8 @@ export function handlerInputCountry(initialData, event, allCountries) {
         selectCity,
         defaultOptionCity,
         elemInputCityName,
-        formWeather
+        formWeather,
+        allCountries
     } = initialData;
     
     const inputCountryName = event.target.value.trim().toLowerCase();

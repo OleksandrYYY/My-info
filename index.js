@@ -11,29 +11,26 @@ import { getInitialData } from "./getInitialData.js";
 
 document.addEventListener("DOMContentLoaded", async() => {
     // localStorage.clear();
-    let allCountries = [];
-    let selectCountryName = "";
-    let citiesSelectedCountry;
-
     const initialData = getInitialData();
-    const {formWeather, elemInputCountryName, elemInputCityName, conditionWeatherCity, selectCountry, selectCity, defaultOptionCountry, defaultOptionCity, tableInformationOfCountries} = initialData
+    const {formWeather, elemInputCountryName, elemInputCityName, conditionWeatherCity, selectCountry, selectCity, defaultOptionCountry, defaultOptionCity, tableInformationOfCountries} = initialData;
 
-    allCountries = await fetchApiGetCountries(initialData, allCountries);
+    initialData.allCountries = await fetchApiGetCountries(initialData, initialData.allCountries);
+    
     elemInputCityName.disabled = true;
 
     showTableResults(tableInformationOfCountries);
 
     handlerEvents(elemInputCountryName, "input", (event) => {
-        handlerInputCountry(initialData, event, allCountries);
+        handlerInputCountry(initialData, event);
     });
 
     handlerEvents(selectCountry, "change", async(event) => {
-        citiesSelectedCountry = await handlerSelectCountry(initialData, event, allCountries, citiesSelectedCountry, selectCountryName);
+        initialData.citiesSelectedCountry = await handlerSelectCountry(initialData, event);
     });
 
     handlerEvents(elemInputCityName, "input", (event) => {
-        handlerInputCity(initialData, event, allCountries, citiesSelectedCountry);
+        handlerInputCity(initialData, event);
     });
 
-    fetchApiWeatherCity(selectCity, selectCountryName, conditionWeatherCity, formWeather);
+    fetchApiWeatherCity(selectCity, conditionWeatherCity, formWeather);
 });

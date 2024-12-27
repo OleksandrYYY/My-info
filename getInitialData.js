@@ -8,6 +8,9 @@ export function getInitialData() {
     const defaultOptionCountry = document.querySelector("#default-option-country");
     const defaultOptionCity = document.querySelector("#default-option-city");
     const tableInformationOfCountries = document.querySelector("#all-info-countries");
+    let allCountries = [];
+    let selectCountryName = "";
+    let citiesSelectedCountry;
 
     return {
         formWeather,
@@ -18,6 +21,9 @@ export function getInitialData() {
         selectCity,
         defaultOptionCountry,
         defaultOptionCity,
-        tableInformationOfCountries
+        tableInformationOfCountries,
+        allCountries,
+        selectCountryName,
+        citiesSelectedCountry
     };
 };

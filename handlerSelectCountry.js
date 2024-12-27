@@ -3,29 +3,30 @@ import { showTableResults } from "./showTableResults.js";
 import { fetchApiCitiesByCountry } from "./fetchApiCitiesByCountry.js";
 import { showListCities } from "./showListCities.js";
 
-export async function handlerSelectCountry(initialData, event, allCountries, citiesSelectedCountry, selectCountryName) {
+export async function handlerSelectCountry(initialData, event) {
     
     const {
         elemInputCityName,
         conditionWeatherCity,
         tableInformationOfCountries,
         selectCity,
-        defaultOptionCity
+        defaultOptionCity,
+        allCountries
     } = initialData;
     
-    selectCountryName = event.target.value;
+    initialData.selectCountryName = event.target.value;
     elemInputCityName.disabled = false;
     conditionWeatherCity.innerHTML = "";
 
-    const foundCountry = allCountries.find(country => country.name.common === selectCountryName );
+    const foundCountry = allCountries.find(country => country.name.common === initialData.selectCountryName );
     saveVisitedCountries(foundCountry);
     showTableResults(tableInformationOfCountries);
 
-    if (selectCountryName) {
+    if (initialData.selectCountryName) {
         try {
-            citiesSelectedCountry = await fetchApiCitiesByCountry(selectCountryName);
+            initialData.citiesSelectedCountry = await fetchApiCitiesByCountry(initialData.selectCountryName);
 
-            const foundCountry = allCountries.find(country => country.name.common === selectCountryName);
+            const foundCountry = allCountries.find(country => country.name.common === initialData.selectCountryName);
             let countryCode = "en";
 
             if (foundCountry && foundCountry.languages) {
@@ -37,9 +38,9 @@ export async function handlerSelectCountry(initialData, event, allCountries, cit
                 };
             };
 
-            showListCities(citiesSelectedCountry, selectCity, defaultOptionCity, countryCode);
+            showListCities(initialData.citiesSelectedCountry, initialData, countryCode);
             selectCity.disabled = false;
-            return citiesSelectedCountry;
+            return initialData.citiesSelectedCountry;
         } catch (error) {
             console.error("Помилка при завантаженні міст:", error);
         };

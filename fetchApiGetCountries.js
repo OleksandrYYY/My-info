@@ -6,7 +6,6 @@ export async function fetchApiGetCountries(initialData, allCountries) {
         const response = await fetch("https://restcountries.com/v3.1/all");
         allCountries = await response.json();
     
-        // showListCountries(allCountries, selectCountry);
         showListCountries(allCountries, selectCountry);      
         selectCity.disabled = true;
 

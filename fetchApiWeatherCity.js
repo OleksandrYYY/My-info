@@ -3,7 +3,7 @@ import { getDataWeatherCity } from "./getDataWeatherCity.js";
 import { API_BASE_URL } from "./constants.js";
 import { API_KEY } from "./constants.js";
 
-export function fetchApiWeatherCity(selectCity, selectCountryName, conditionWeatherCity, formWeather) {
+export function fetchApiWeatherCity(selectCity, conditionWeatherCity, formWeather) {
 
     handlerEvents(selectCity, "change", async(event) => {
         const selectCityName = event.target.value;
