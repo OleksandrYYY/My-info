@@ -1,7 +1,18 @@
 import { showListCountries } from "./showListCountries.js";
 import { getFilterResult } from "./getFilterResult.js";
 
-export function handlerInputCountry(event, selectCountry, defaultOptionCountry, conditionWeatherCity, allCountries, selectCity, defaultOptionCity, elemInputCityName, formWeather) {
+export function handlerInputCountry(initialData, event, allCountries) {
+    
+    const {
+        selectCountry,
+        defaultOptionCountry,
+        conditionWeatherCity,
+        selectCity,
+        defaultOptionCity,
+        elemInputCityName,
+        formWeather
+    } = initialData;
+    
     const inputCountryName = event.target.value.trim().toLowerCase();
     selectCountry.innerHTML = "";
     selectCountry.append(defaultOptionCountry);
@@ -14,7 +25,12 @@ export function handlerInputCountry(event, selectCountry, defaultOptionCountry, 
         selectCity.disabled = true;
         elemInputCityName.disabled = true;
     } else {
-        getFilterResult(allCountries, inputCountryName, selectCountry, formWeather, conditionWeatherCity, true);
+        getFilterResult(allCountries, inputCountryName, {
+            selectElem: selectCountry,
+            conditionWeatherCity,
+            formWeather,
+            isCountry: true
+        });
         elemInputCityName.value = "";
         selectCity.innerHTML = "";
         selectCity.append(defaultOptionCity);

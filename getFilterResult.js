@@ -1,4 +1,12 @@
-export function getFilterResult(arrayOfElements, inputValue, selectElem, formWeather, conditionWeatherCity, isCountry = false) {
+export function getFilterResult(arrayOfElements, inputValue, options) {
+
+    const {
+        selectElem,
+        conditionWeatherCity = null,
+        formWeather = null,
+        isCountry = false
+    } = options;
+
     const filterElements = arrayOfElements.filter((elem) => {
         if (isCountry) {
             return elem.name.common.toLowerCase().startsWith(inputValue.toLowerCase());

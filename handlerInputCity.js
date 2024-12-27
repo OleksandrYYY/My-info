@@ -1,7 +1,18 @@
 import { showListCountries } from "./showListCountries.js";
 import { getFilterResult } from "./getFilterResult.js";
 
-export function handlerInputCity(event, selectCity, defaultOptionCity, elemInputCountryName, selectCountry, defaultOptionCountry, allCountries,elemInputCityName, conditionWeatherCity, citiesSelectedCountry, formWeather) {
+export function handlerInputCity(initialData, event, allCountries, citiesSelectedCountry) {
+    const {
+        selectCity,
+        defaultOptionCity,
+        elemInputCountryName,
+        selectCountry,
+        defaultOptionCountry,
+        elemInputCityName,
+        conditionWeatherCity,
+        formWeather
+    } = initialData;
+
     const inputCityName = event.target.value.trim().toLowerCase();
     selectCity.innerHTML = "";
     selectCity.append(defaultOptionCity);
@@ -15,6 +26,11 @@ export function handlerInputCity(event, selectCity, defaultOptionCity, elemInput
         selectCity.disabled = true;
         conditionWeatherCity.innerHTML = "";
     } else {
-        getFilterResult(citiesSelectedCountry, inputCityName, selectCity, formWeather, conditionWeatherCity, false);
+        getFilterResult(citiesSelectedCountry, inputCityName, {
+            selectElem: selectCity,
+            conditionWeatherCity,
+            formWeather,
+            isCountry: false
+        });
     };
-}
+};

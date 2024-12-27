@@ -1,11 +1,13 @@
 import { showListCountries } from "./showListCountries.js";
 
-export async function fetchApiGetCountries(allCountries, selectCountry, selectCity) {
+export async function fetchApiGetCountries(initialData, allCountries) {
+    const { selectCountry, selectCity } = initialData;
     try {
         const response = await fetch("https://restcountries.com/v3.1/all");
         allCountries = await response.json();
     
-        showListCountries(allCountries, selectCountry);        
+        // showListCountries(allCountries, selectCountry);
+        showListCountries(allCountries, selectCountry);      
         selectCity.disabled = true;
 
         return allCountries;

@@ -3,7 +3,16 @@ import { showTableResults } from "./showTableResults.js";
 import { fetchApiCitiesByCountry } from "./fetchApiCitiesByCountry.js";
 import { showListCities } from "./showListCities.js";
 
-export async function handlerSelectCountry(event, selectCountryName, elemInputCityName, conditionWeatherCity, allCountries, tableInformationOfCountries, citiesSelectedCountry, selectCity, defaultOptionCity) {
+export async function handlerSelectCountry(initialData, event, allCountries, citiesSelectedCountry, selectCountryName) {
+    
+    const {
+        elemInputCityName,
+        conditionWeatherCity,
+        tableInformationOfCountries,
+        selectCity,
+        defaultOptionCity
+    } = initialData;
+    
     selectCountryName = event.target.value;
     elemInputCityName.disabled = false;
     conditionWeatherCity.innerHTML = "";
