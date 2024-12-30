@@ -1,4 +1,4 @@
-import { showListCountries } from "./showListCountries.js";
+import * as UI from "../UI/index.js";
 
 export async function fetchApiGetCountries(initialData, allCountries) {
     const { selectCountry, selectCity } = initialData;
@@ -6,7 +6,7 @@ export async function fetchApiGetCountries(initialData, allCountries) {
         const response = await fetch("https://restcountries.com/v3.1/all");
         allCountries = await response.json();
     
-        showListCountries(allCountries, selectCountry);      
+        UI.showListCountries(allCountries, selectCountry);      
         selectCity.disabled = true;
 
         return allCountries;

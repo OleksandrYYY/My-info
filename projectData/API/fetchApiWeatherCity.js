@@ -1,11 +1,11 @@
-import { handlerEvents } from "./handlerEvents.js";
-import { getDataWeatherCity } from "./getDataWeatherCity.js";
-import { API_BASE_URL } from "./constants.js";
-import { API_KEY } from "./constants.js";
+import * as UI from "../UI/index.js";
+import * as UiAction from "../UiAction/index.js";
+import { API_BASE_URL } from "../generalData/constants.js";
+import { API_KEY } from "../generalData/constants.js";
 
 export function fetchApiWeatherCity(selectCity, conditionWeatherCity, formWeather) {
 
-    handlerEvents(selectCity, "change", async(event) => {
+    UiAction.handlerEvents(selectCity, "change", async(event) => {
         const selectCityName = event.target.value;
         if (selectCityName) {
             try {
@@ -20,7 +20,7 @@ export function fetchApiWeatherCity(selectCity, conditionWeatherCity, formWeathe
                     return;
                 };
 
-                getDataWeatherCity(dataWeatherCity, conditionWeatherCity, formWeather);
+                UI.getDataWeatherCity(dataWeatherCity, conditionWeatherCity, formWeather);
             } catch (error) {
                 console.error("Сталася помилка:", error);
             };

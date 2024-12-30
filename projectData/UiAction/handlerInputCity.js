@@ -1,5 +1,4 @@
-import { showListCountries } from "./showListCountries.js";
-import { getFilterResult } from "./getFilterResult.js";
+import * as UI from "../UI/index.js";
 
 export function handlerInputCity(initialData, event) {
     const {
@@ -23,12 +22,12 @@ export function handlerInputCity(initialData, event) {
         elemInputCountryName.value = "";
         selectCountry.innerHTML = "";
         selectCountry.append(defaultOptionCountry);
-        showListCountries(allCountries, selectCountry);
+        UI.showListCountries(allCountries, selectCountry);
         elemInputCityName.disabled = true;
         selectCity.disabled = true;
         conditionWeatherCity.innerHTML = "";
     } else {
-        getFilterResult(citiesSelectedCountry, inputCityName, {
+        UI.getFilterResult(citiesSelectedCountry, inputCityName, {
             selectElem: selectCity,
             conditionWeatherCity,
             formWeather,

@@ -1,7 +1,6 @@
-import { saveVisitedCountries } from "./saveVisitedCountries.js";
-import { showTableResults } from "./showTableResults.js";
-import { fetchApiCitiesByCountry } from "./fetchApiCitiesByCountry.js";
-import { showListCities } from "./showListCities.js";
+import * as UI from "../UI/index.js";
+import * as UiAction from "../UiAction/index.js";
+import * as API from "../API/index.js";
 
 export async function handlerSelectCountry(initialData, event) {
     
@@ -19,12 +18,12 @@ export async function handlerSelectCountry(initialData, event) {
     conditionWeatherCity.innerHTML = "";
 
     const foundCountry = allCountries.find(country => country.name.common === initialData.selectCountryName );
-    saveVisitedCountries(foundCountry);
-    showTableResults(tableInformationOfCountries);
+    UiAction.saveVisitedCountries(foundCountry);
+    UI.showTableResults(tableInformationOfCountries);
 
     if (initialData.selectCountryName) {
         try {
-            initialData.citiesSelectedCountry = await fetchApiCitiesByCountry(initialData.selectCountryName);
+            initialData.citiesSelectedCountry = await API.fetchApiCitiesByCountry(initialData.selectCountryName);
 
             const foundCountry = allCountries.find(country => country.name.common === initialData.selectCountryName);
             let countryCode = "en";
@@ -38,7 +37,7 @@ export async function handlerSelectCountry(initialData, event) {
                 };
             };
 
-            showListCities(initialData.citiesSelectedCountry, initialData, countryCode);
+            UI.showListCities(initialData.citiesSelectedCountry, initialData, countryCode);
             selectCity.disabled = false;
             return initialData.citiesSelectedCountry;
         } catch (error) {
