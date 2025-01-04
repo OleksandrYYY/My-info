@@ -9,14 +9,18 @@ export function fetchApiWeatherCity(selectCity, conditionWeatherCity, formWeathe
         const selectCityName = event.target.value;
         if (selectCityName) {
             try {
-                // const response = await fetch(`${API_BASE_URL}/current.json?key=${API_KEY}&q=${selectCityName}&q=${selectCountryName}`);
+                // const encodedCityName = encodeURIComponent(selectCityName);
+                // const response = await fetch(
+                //     `${API_BASE_URL}/current.json?key=${API_KEY}&q=${encodedCityName}`
+                // );
                 const response = await fetch(`${API_BASE_URL}/current.json?key=${API_KEY}&q=${selectCityName}`);
                 const dataWeatherCity = await response.json();
                 console.log(dataWeatherCity);
 
                 if (dataWeatherCity.error) {
-                    // Якщо API повернуло помилку
                     console.error("API Error:", dataWeatherCity.error.message);
+                    formWeather.append(conditionWeatherCity);
+                    conditionWeatherCity.innerHTML = `<p style="color: red;">Дані про місто ${selectCityName} не знайдені.</p>`
                     return;
                 };
 
