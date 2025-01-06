@@ -4,7 +4,6 @@ export function showListCities(citiesSelectedCountry, initialData, countryCode =
     const { selectCity, defaultOptionCity } = initialData;
     selectCity.innerHTML = "";
     selectCity.append(defaultOptionCity);
-    console.log(citiesSelectedCountry);
 
     const cleanCitiesDiacritics = citiesSelectedCountry.map((city) => {
         return UiAction.removeDiacritics(city);

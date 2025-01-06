@@ -9,10 +9,6 @@ export function fetchApiWeatherCity(selectCity, conditionWeatherCity, formWeathe
         const selectCityName = event.target.value;
         if (selectCityName) {
             try {
-                // const encodedCityName = encodeURIComponent(selectCityName);
-                // const response = await fetch(
-                //     `${API_BASE_URL}/current.json?key=${API_KEY}&q=${encodedCityName}`
-                // );
                 const response = await fetch(`${API_BASE_URL}/current.json?key=${API_KEY}&q=${selectCityName}`);
                 const dataWeatherCity = await response.json();
                 console.log(dataWeatherCity);

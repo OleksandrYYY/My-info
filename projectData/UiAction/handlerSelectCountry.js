@@ -9,7 +9,6 @@ export async function handlerSelectCountry(initialData, event) {
         conditionWeatherCity,
         tableInformationOfCountries,
         selectCity,
-        defaultOptionCity,
         allCountries
     } = initialData;
     
@@ -19,7 +18,7 @@ export async function handlerSelectCountry(initialData, event) {
 
     const foundCountry = allCountries.find(country => country.name.common === initialData.selectCountryName );
     UiAction.saveVisitedCountries(foundCountry);
-    UI.showTableResults(tableInformationOfCountries);
+    UI.showTableVisitedDataCountries(tableInformationOfCountries);
 
     if (initialData.selectCountryName) {
         try {

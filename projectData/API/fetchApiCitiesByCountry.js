@@ -16,8 +16,6 @@ export async function fetchApiCitiesByCountry(countryName) {
         };
 
         const dataCities = await response.json();
-        console.log(dataCities);
-
         return dataCities.data;
     } catch (error) {
         console.error("Помилка:", error);
