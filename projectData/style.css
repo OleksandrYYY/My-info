@@ -1,0 +1,27 @@
+.weather-by-days {
+    display: none;
+}
+
+/* .weather-table {
+    border: 2px solid black;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.weather-table th,
+.weather-table td {
+    border: 1px solid #999;
+    padding: 8px;
+} */
+
+.weather-by-days {
+    border: 2px solid black;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.weather-by-days th,
+.weather-by-days td {
+    border: 1px solid #999;
+    padding: 8px;
+}

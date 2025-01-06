@@ -8,7 +8,7 @@ import * as generalData from "../generalData/index.js";
 document.addEventListener("DOMContentLoaded", async() => {
     // localStorage.clear();
     const initialData = generalData.getInitialData();
-    const {formWeather, elemInputCountryName, elemInputCityName, conditionWeatherCity, selectCountry, selectCity, defaultOptionCountry, defaultOptionCity, tableInformationOfCountries} = initialData;
+    const {formWeather, elemInputCountryName, elemInputCityName, conditionWeatherCity, selectCountry, selectCity, defaultOptionCountry, defaultOptionCity, tableInformationOfCountries, tableInformationOfWeatherByDays} = initialData;
 
     initialData.allCountries = await API.fetchApiGetCountries(initialData, initialData.allCountries);
     
@@ -28,5 +28,6 @@ document.addEventListener("DOMContentLoaded", async() => {
         UiAction.handlerInputCity(initialData, event);
     });
 
-    API.fetchApiWeatherCity(selectCity, conditionWeatherCity, formWeather);
+    // API.fetchApiWeatherCity(selectCity, conditionWeatherCity, formWeather);
+    API.fetchApiWeatherCityByDays(selectCity, conditionWeatherCity, formWeather, tableInformationOfWeatherByDays);
 });

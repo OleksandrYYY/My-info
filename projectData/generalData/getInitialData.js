@@ -8,6 +8,7 @@ export function getInitialData() {
     const defaultOptionCountry = document.querySelector("#default-option-country");
     const defaultOptionCity = document.querySelector("#default-option-city");
     const tableInformationOfCountries = document.querySelector("#all-info-countries");
+    const tableInformationOfWeatherByDays = document.querySelector("#info-weather-days");
     let allCountries = [];
     let selectCountryName = "";
     let citiesSelectedCountry;
@@ -22,6 +23,7 @@ export function getInitialData() {
         defaultOptionCountry,
         defaultOptionCity,
         tableInformationOfCountries,
+        tableInformationOfWeatherByDays,
         allCountries,
         selectCountryName,
         citiesSelectedCountry

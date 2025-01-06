@@ -2,7 +2,8 @@ export function getDataWeatherCity(dataWeatherCity, conditionWeatherCity, formWe
     const {current, location} = dataWeatherCity;
     
     conditionWeatherCity.innerHTML = `
-        <h2>Погода в ${location.name}, ${location.country}</h2>
+        <h2>Дані про погоду в реальному часі:</h2>
+        <h3>Погода в <b>${location.name}</b>, <b>${location.country}</b></h3>
         <p><strong>Температура:</strong> ${current.temp_c}°C</p>
         <p><strong>Стан погоди:</strong> ${current.condition.text}</p>
         <img src="https:${current.condition.icon}" alt="${current.condition.text}" />
