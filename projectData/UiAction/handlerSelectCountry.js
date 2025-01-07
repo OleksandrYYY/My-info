@@ -17,10 +17,11 @@ export async function handlerSelectCountry(initialData, event) {
     elemInputCityName.disabled = false;
     conditionWeatherCity.innerHTML = "";
     tableInformationOfWeatherByDays.style.display = "none";
+    tableInformationOfCountries.style.display = "none";
 
     const foundCountry = allCountries.find(country => country.name.common === initialData.selectCountryName );
     UiAction.saveVisitedCountries(foundCountry);
-    UI.showTableVisitedDataCountries(tableInformationOfCountries);
+    // UI.showTableVisitedDataCountries(tableInformationOfCountries);
 
     if (initialData.selectCountryName) {
         try {

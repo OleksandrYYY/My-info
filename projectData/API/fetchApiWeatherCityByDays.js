@@ -30,13 +30,12 @@ export function fetchApiWeatherCityByDays(initialData) {
                 UI.getDataWeatherCity(dataResponse, conditionWeatherCity, formWeather);
                 conditionWeatherCity.append(showBtnWeatherByDays);
 
-                UiAction.handlerEvents(showBtnWeatherByDays, "click", (event) => {
-                    event.preventDefault();
+                UiAction.handlerEvents(showBtnWeatherByDays, "click", () => {
+                    conditionWeatherCity.after(tableInformationOfWeatherByDays);
                     UI.showTableWeatherByDays(tableInformationOfWeatherByDays, dataResponse);
                     showBtnWeatherByDays.after(showBtnHideData);
 
-                    UiAction.handlerEvents(showBtnHideData, "click", (event) => {
-                        event.preventDefault();
+                    UiAction.handlerEvents(showBtnHideData, "click", () => {
                         tableInformationOfWeatherByDays.style.display = "none";
                         showBtnHideData.remove();
                     })
