@@ -9,12 +9,14 @@ export async function handlerSelectCountry(initialData, event) {
         conditionWeatherCity,
         tableInformationOfCountries,
         selectCity,
-        allCountries
+        allCountries,
+        tableInformationOfWeatherByDays
     } = initialData;
     
     initialData.selectCountryName = event.target.value;
     elemInputCityName.disabled = false;
     conditionWeatherCity.innerHTML = "";
+    tableInformationOfWeatherByDays.style.display = "none";
 
     const foundCountry = allCountries.find(country => country.name.common === initialData.selectCountryName );
     UiAction.saveVisitedCountries(foundCountry);

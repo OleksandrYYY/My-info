@@ -3,15 +3,22 @@ import * as UiAction from "../UiAction/index.js";
 import { API_BASE_URL } from "../generalData/constants.js";
 import { API_KEY } from "../generalData/constants.js";
 
-export function fetchApiWeatherCityByDays(selectCity, conditionWeatherCity, formWeather, tableInformationOfWeatherByDays) {
+export function fetchApiWeatherCityByDays(initialData) {
+
+    const {
+        selectCity,
+        conditionWeatherCity,
+        formWeather,
+        tableInformationOfWeatherByDays
+    } = initialData;
 
     UiAction.handlerEvents(selectCity, "change", async(event) => {
         tableInformationOfWeatherByDays.style.display = "none";
         const showBtnWeatherByDays = document.createElement("button");
         showBtnWeatherByDays.textContent = "Показати погоду на 3 дні";
 
-        const a = document.createElement("button");
-        a.textContent = "Сховати дані";
+        const showBtnHideData = document.createElement("button");
+        showBtnHideData.textContent = "Сховати дані";
 
         const selectCityName = event.target.value;
 
@@ -26,12 +33,12 @@ export function fetchApiWeatherCityByDays(selectCity, conditionWeatherCity, form
                 UiAction.handlerEvents(showBtnWeatherByDays, "click", (event) => {
                     event.preventDefault();
                     UI.showTableWeatherByDays(tableInformationOfWeatherByDays, dataResponse);
-                    showBtnWeatherByDays.after(a);
+                    showBtnWeatherByDays.after(showBtnHideData);
 
-                    UiAction.handlerEvents(a, "click", (event) => {
+                    UiAction.handlerEvents(showBtnHideData, "click", (event) => {
                         event.preventDefault();
                         tableInformationOfWeatherByDays.style.display = "none";
-                        a.remove();
+                        showBtnHideData.remove();
                     })
                 });
 
