@@ -6,3 +6,5 @@ export { showTableVisitedDataCountries } from "./showTableVisitedDataCountries.j
 export { showTableWeatherByDays } from "./showTableWeatherByDays.js";
 export { showBlockDataOfCountries } from "./showBlockDataOfCountries.js";
 export { showPlaces } from "./showPlaces.js";
+export { showCategoriesOfPlaces } from "./showCategoriesOfPlaces.js";
+

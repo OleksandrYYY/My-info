@@ -11,7 +11,9 @@ export function fetchApiWeatherCityByDays(initialData) {
         formWeather,
         tableInformationOfWeatherByDays,
         tableInformationOfCountries,
-        showBtnHideData
+        showBtnHideData,
+        blockInfoAboutPlacesCity,
+        btnShowPlaces
     } = initialData;
 
     UiAction.handlerEvents(selectCity, "change", async(event) => {
@@ -29,6 +31,7 @@ export function fetchApiWeatherCityByDays(initialData) {
             try {
                 const response = await fetch(`${API_BASE_URL}/forecast.json?key=${API_KEY}&q=${selectCityName}&days=3`);
                 const dataResponse = await response.json();
+                blockInfoAboutPlacesCity.style.display = "block";
 
                 UI.getDataWeatherCity(dataResponse, conditionWeatherCity, formWeather);
                 conditionWeatherCity.append(showBtnWeatherByDays);
@@ -43,6 +46,14 @@ export function fetchApiWeatherCityByDays(initialData) {
                         tableInformationOfWeatherByDays.style.display = "none";
                         showBtnHideData.remove();
                     })
+                });
+
+                UiAction.handlerEvents(btnShowPlaces, "click", async() => {
+                    try {
+                        await UiAction.getListPlaces(selectCityName, blockInfoAboutPlacesCity);
+                    } catch (error) {
+                        console.error("Не отримано списка місць!", error);
+                    };
                 });
 
             } catch (error) {

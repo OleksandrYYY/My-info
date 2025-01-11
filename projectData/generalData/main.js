@@ -8,7 +8,11 @@ import * as generalData from "../generalData/index.js";
 document.addEventListener("DOMContentLoaded", async() => {
     // localStorage.clear();
     const initialData = generalData.getInitialData();
-    const {formWeather, elemInputCountryName, elemInputCityName, selectCountry, tableInformationOfCountries, blockInfoVisitedCountries, selectCity, blockInfoAboutPlacesCity, showBtnHideData, btnShowPlaces} = initialData;
+    const {formWeather, elemInputCountryName, elemInputCityName, selectCountry, tableInformationOfCountries, blockInfoVisitedCountries, showBtnHideData, selectCity, blockInfoAboutPlacesCity, btnShowPlaces} = initialData;
+
+    btnShowPlaces.textContent = "Показати популярні місця";
+    blockInfoAboutPlacesCity.append(btnShowPlaces);
+    blockInfoAboutPlacesCity.style.display = "none";
 
     initialData.allCountries = await API.fetchApiGetCountries(initialData);
     
@@ -30,9 +34,15 @@ document.addEventListener("DOMContentLoaded", async() => {
 
     API.fetchApiWeatherCityByDays(initialData);
 
-    // UiAction.handlerEvents(selectCountry, "click", async () => {
+    // UiAction.handlerEvents(btnShowPlaces, "click", async () => {
     //     const cityName = selectCity.value;
     //     const places = await API.fetchApiPlaces(cityName);
+    //     console.log(places);
+    //     UI.showCategoriesOfPlaces(places, blockInfoAboutPlacesCity);
+    // });
+
+    // UiAction.handlerEvents(btnShowPlaces, "click", async () => {
+    //     const places = await API.fetchApiPlaces();
     //     console.log(places);
     // });
 });
