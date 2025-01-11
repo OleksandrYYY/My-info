@@ -10,9 +10,11 @@ export function getInitialData() {
     const tableInformationOfCountries = document.querySelector("#all-info-countries");
     const tableInformationOfWeatherByDays = document.querySelector("#info-weather-days");
     const blockInfoVisitedCountries = document.createElement("div");
-    let allCountries = [];
-    let selectCountryName = "";
-    let citiesSelectedCountry;
+    const blockInfoAboutPlacesCity = document.createElement("div");
+    const btnShowPlaces = document.createElement("button");
+    const showBtnHideData = document.createElement("button");
+    let allCountries = null;
+    let citiesSelectedCountry = null;
 
     return {
         formWeather,
@@ -26,8 +28,10 @@ export function getInitialData() {
         tableInformationOfCountries,
         tableInformationOfWeatherByDays,
         blockInfoVisitedCountries,
+        blockInfoAboutPlacesCity,
+        btnShowPlaces,
+        showBtnHideData,
         allCountries,
-        selectCountryName,
         citiesSelectedCountry
     };
 };

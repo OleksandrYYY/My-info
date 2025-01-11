@@ -11,7 +11,9 @@ export function handlerInputCountry(initialData, event) {
         elemInputCityName,
         formWeather,
         allCountries,
-        tableInformationOfWeatherByDays
+        tableInformationOfCountries,
+        tableInformationOfWeatherByDays,
+        showBtnHideData
     } = initialData;
     
     const inputCountryName = event.target.value.trim().toLowerCase();
@@ -22,6 +24,8 @@ export function handlerInputCountry(initialData, event) {
     if (inputCountryName === "") {
         UI.showListCountries(allCountries, selectCountry);
         tableInformationOfWeatherByDays.style.display = "none";
+        tableInformationOfCountries.style.display = "none";
+        showBtnHideData.style.display = "none";
         selectCity.innerHTML = "";
         selectCity.append(defaultOptionCity);
         selectCity.disabled = true;
@@ -34,6 +38,8 @@ export function handlerInputCountry(initialData, event) {
             isCountry: true
         });
         tableInformationOfWeatherByDays.style.display = "none";
+        tableInformationOfCountries.style.display = "none";
+        showBtnHideData.style.display = "none";
         elemInputCityName.value = "";
         selectCity.innerHTML = "";
         selectCity.append(defaultOptionCity);

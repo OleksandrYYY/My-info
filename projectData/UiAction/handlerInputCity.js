@@ -11,7 +11,9 @@ export function handlerInputCity(initialData, event) {
         conditionWeatherCity,
         formWeather,
         allCountries,
-        citiesSelectedCountry
+        citiesSelectedCountry,
+        tableInformationOfCountries,
+        showBtnHideData
     } = initialData;
 
     const inputCityName = event.target.value.trim().toLowerCase();
@@ -20,6 +22,8 @@ export function handlerInputCity(initialData, event) {
 
     if (inputCityName === "") {
         elemInputCountryName.value = "";
+        tableInformationOfCountries.style.display = "none";
+        showBtnHideData.style.display = "none";
         selectCountry.innerHTML = "";
         selectCountry.append(defaultOptionCountry);
         UI.showListCountries(allCountries, selectCountry);
@@ -33,5 +37,7 @@ export function handlerInputCity(initialData, event) {
             formWeather,
             isCountry: false
         });
+        tableInformationOfCountries.style.display = "none";
+        showBtnHideData.style.display = "none";
     };
 };

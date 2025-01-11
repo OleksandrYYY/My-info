@@ -10,24 +10,26 @@ export async function handlerSelectCountry(initialData, event) {
         tableInformationOfCountries,
         selectCity,
         allCountries,
-        tableInformationOfWeatherByDays
+        tableInformationOfWeatherByDays,
+        showBtnHideData
     } = initialData;
     
-    initialData.selectCountryName = event.target.value;
+    const selectCountryName = event.target.value;
     elemInputCityName.disabled = false;
     conditionWeatherCity.innerHTML = "";
     tableInformationOfWeatherByDays.style.display = "none";
     tableInformationOfCountries.style.display = "none";
+    showBtnHideData.style.display = "none";
 
-    const foundCountry = allCountries.find(country => country.name.common === initialData.selectCountryName );
+    const foundCountry = allCountries.find(country => country.name.common === selectCountryName );
     UiAction.saveVisitedCountries(foundCountry);
     // UI.showTableVisitedDataCountries(tableInformationOfCountries);
 
-    if (initialData.selectCountryName) {
+    if (selectCountryName) {
         try {
-            initialData.citiesSelectedCountry = await API.fetchApiCitiesByCountry(initialData.selectCountryName);
+            initialData.citiesSelectedCountry = await API.fetchApiCitiesByCountry(selectCountryName);
 
-            const foundCountry = allCountries.find(country => country.name.common === initialData.selectCountryName);
+            const foundCountry = allCountries.find(country => country.name.common === selectCountryName);
             let countryCode = "en";
 
             if (foundCountry && foundCountry.languages) {
