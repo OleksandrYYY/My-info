@@ -11,8 +11,7 @@ document.addEventListener("DOMContentLoaded", async() => {
     const {formWeather, elemInputCountryName, elemInputCityName, selectCountry, tableInformationOfCountries, blockInfoVisitedCountries, showBtnHideData, selectCity, blockInfoAboutPlacesCity, btnShowPlaces} = initialData;
 
     btnShowPlaces.textContent = "Показати популярні місця";
-    blockInfoAboutPlacesCity.append(btnShowPlaces);
-    blockInfoAboutPlacesCity.style.display = "none";
+    btnShowPlaces.style.display = "none";
 
     initialData.allCountries = await API.fetchApiGetCountries(initialData);
     
@@ -30,19 +29,14 @@ document.addEventListener("DOMContentLoaded", async() => {
         UiAction.handlerInputCity(initialData, event);
     });
 
-    UI.showBlockDataOfCountries(tableInformationOfCountries, formWeather, blockInfoVisitedCountries, showBtnHideData, blockInfoAboutPlacesCity);
+    UI.showBlockDataOfCountries(tableInformationOfCountries, formWeather, blockInfoVisitedCountries, showBtnHideData, blockInfoAboutPlacesCity, btnShowPlaces);
 
     API.fetchApiWeatherCityByDays(initialData);
 
-    // UiAction.handlerEvents(btnShowPlaces, "click", async () => {
-    //     const cityName = selectCity.value;
-    //     const places = await API.fetchApiPlaces(cityName);
-    //     console.log(places);
-    //     UI.showCategoriesOfPlaces(places, blockInfoAboutPlacesCity);
-    // });
+    UiAction.handlerEvents(btnShowPlaces, "click", async() => {
+        const selectCityName = selectCity.value.trim();
+        // const selectCityName = initialData.selectCity.value.trim();
+        await UiAction.getListPlaces(selectCityName, blockInfoAboutPlacesCity);
+    });
 
-    // UiAction.handlerEvents(btnShowPlaces, "click", async () => {
-    //     const places = await API.fetchApiPlaces();
-    //     console.log(places);
-    // });
 });

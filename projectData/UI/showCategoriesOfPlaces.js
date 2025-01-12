@@ -1,5 +1,5 @@
 export function showCategoriesOfPlaces(places, blockInfoAboutPlacesCity) {
-    // blockInfoAboutPlacesCity.innerHTML = "";
+    blockInfoAboutPlacesCity.innerHTML = "";
     const ul = document.createElement("ul")
     places.forEach((place) => {
         const li = document.createElement("li");

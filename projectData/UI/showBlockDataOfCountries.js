@@ -1,7 +1,7 @@
 import * as UI from "../UI/index.js";
 import * as UiAction from "../UiAction/index.js";
 
-export function showBlockDataOfCountries(tableInformationOfCountries, formWeather, blockInfoVisitedCountries, showBtnHideData, blockInfoAboutPlacesCity) {
+export function showBlockDataOfCountries(tableInformationOfCountries, formWeather, blockInfoVisitedCountries, showBtnHideData, blockInfoAboutPlacesCity, btnShowPlaces) {
     const showBtnHere = document.createElement("button");
     showBtnHere.textContent = "Тут";
 
@@ -14,7 +14,6 @@ export function showBlockDataOfCountries(tableInformationOfCountries, formWeathe
     showContent.append(showBtnHere);
     formWeather.after(blockInfoVisitedCountries);
     blockInfoVisitedCountries.append(showContent);
-    tableInformationOfCountries.after(blockInfoAboutPlacesCity);
     
     UiAction.handlerEvents(showBtnHere, "click", () => {
         const visitedCountries = JSON.parse(localStorage.getItem("countries")) || [];

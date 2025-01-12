@@ -11,7 +11,9 @@ export async function handlerSelectCountry(initialData, event) {
         selectCity,
         allCountries,
         tableInformationOfWeatherByDays,
-        showBtnHideData
+        showBtnHideData,
+        btnShowPlaces,
+        blockInfoAboutPlacesCity
     } = initialData;
     
     const selectCountryName = event.target.value;
@@ -20,6 +22,9 @@ export async function handlerSelectCountry(initialData, event) {
     tableInformationOfWeatherByDays.style.display = "none";
     tableInformationOfCountries.style.display = "none";
     showBtnHideData.style.display = "none";
+    btnShowPlaces.style.display = "none";
+    blockInfoAboutPlacesCity.innerHTML = "";
+
 
     const foundCountry = allCountries.find(country => country.name.common === selectCountryName );
     UiAction.saveVisitedCountries(foundCountry);

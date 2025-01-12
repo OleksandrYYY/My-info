@@ -13,7 +13,9 @@ export function handlerInputCity(initialData, event) {
         allCountries,
         citiesSelectedCountry,
         tableInformationOfCountries,
-        showBtnHideData
+        showBtnHideData,
+        btnShowPlaces,
+        blockInfoAboutPlacesCity
     } = initialData;
 
     const inputCityName = event.target.value.trim().toLowerCase();
@@ -30,6 +32,8 @@ export function handlerInputCity(initialData, event) {
         elemInputCityName.disabled = true;
         selectCity.disabled = true;
         conditionWeatherCity.innerHTML = "";
+        btnShowPlaces.style.display = "none";
+        blockInfoAboutPlacesCity.innerHTML = "";
     } else {
         UI.getFilterResult(citiesSelectedCountry, inputCityName, {
             selectElem: selectCity,
@@ -39,5 +43,7 @@ export function handlerInputCity(initialData, event) {
         });
         tableInformationOfCountries.style.display = "none";
         showBtnHideData.style.display = "none";
+        btnShowPlaces.style.display = "none";
+        blockInfoAboutPlacesCity.innerHTML = "";
     };
 };
