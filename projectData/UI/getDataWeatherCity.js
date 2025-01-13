@@ -11,6 +11,5 @@ export function getDataWeatherCity(dataWeatherCity, conditionWeatherCity, formWe
         <p><strong>Вологість:</strong> ${current.humidity}%</p>
         <p><strong>Швидкість вітру:</strong> ${current.wind_kph} км/год</p>
     `;
-    // formWeather.append(conditionWeatherCity);
     formWeather.after(conditionWeatherCity);
 };

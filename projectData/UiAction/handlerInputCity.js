@@ -1,21 +1,23 @@
 import * as UI from "../UI/index.js";
+import * as UiAction from "../UiAction/index.js";
 
 export function handlerInputCity(initialData, event) {
     const {
-        selectCity,
-        defaultOptionCity,
+        formWeather,
         elemInputCountryName,
-        selectCountry,
-        defaultOptionCountry,
         elemInputCityName,
         conditionWeatherCity,
-        formWeather,
+        selectCountry,
+        defaultOptionCountry,
+        selectCity,
+        defaultOptionCity,
+        tableInformationOfCountries,
+        tableInformationOfWeatherByDays,
+        blockInfoAboutPlacesCity,
+        btnShowPlaces,
+        showBtnHideData,
         allCountries,
         citiesSelectedCountry,
-        tableInformationOfCountries,
-        showBtnHideData,
-        btnShowPlaces,
-        blockInfoAboutPlacesCity
     } = initialData;
 
     const inputCityName = event.target.value.trim().toLowerCase();
@@ -24,16 +26,15 @@ export function handlerInputCity(initialData, event) {
 
     if (inputCityName === "") {
         elemInputCountryName.value = "";
-        tableInformationOfCountries.style.display = "none";
-        showBtnHideData.style.display = "none";
-        selectCountry.innerHTML = "";
+
+        UiAction.clearElements([selectCountry, conditionWeatherCity, blockInfoAboutPlacesCity]);
         selectCountry.append(defaultOptionCountry);
+
         UI.showListCountries(allCountries, selectCountry);
-        elemInputCityName.disabled = true;
-        selectCity.disabled = true;
-        conditionWeatherCity.innerHTML = "";
-        btnShowPlaces.style.display = "none";
-        blockInfoAboutPlacesCity.innerHTML = "";
+
+        UiAction.hideElements([tableInformationOfCountries, btnShowPlaces, showBtnHideData, tableInformationOfWeatherByDays]);
+
+        UiAction.disableFields([elemInputCityName, selectCity], true);
     } else {
         UI.getFilterResult(citiesSelectedCountry, inputCityName, {
             selectElem: selectCity,
@@ -41,9 +42,8 @@ export function handlerInputCity(initialData, event) {
             formWeather,
             isCountry: false
         });
-        tableInformationOfCountries.style.display = "none";
-        showBtnHideData.style.display = "none";
-        btnShowPlaces.style.display = "none";
+
+        UiAction.hideElements([tableInformationOfCountries, btnShowPlaces, showBtnHideData, tableInformationOfWeatherByDays]);
         blockInfoAboutPlacesCity.innerHTML = "";
     };
 };

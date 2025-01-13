@@ -8,12 +8,16 @@ import * as generalData from "../generalData/index.js";
 document.addEventListener("DOMContentLoaded", async() => {
     // localStorage.clear();
     const initialData = generalData.getInitialData();
-    const {formWeather, elemInputCountryName, elemInputCityName, selectCountry, tableInformationOfCountries, blockInfoVisitedCountries, showBtnHideData, selectCity, blockInfoAboutPlacesCity, btnShowPlaces} = initialData;
+    const {elemInputCountryName, elemInputCityName, selectCountry, selectCity, blockInfoAboutPlacesCity, btnShowPlaces} = initialData;
 
     btnShowPlaces.textContent = "Показати популярні місця";
     btnShowPlaces.style.display = "none";
 
-    initialData.allCountries = await API.fetchApiGetCountries(initialData);
+    try {
+        initialData.allCountries = await API.fetchApiGetCountries(initialData);
+    } catch (error) {
+        console.error("Помилка при завантаженні країн:", error);
+    };
     
     elemInputCityName.disabled = true;
 
@@ -22,21 +26,27 @@ document.addEventListener("DOMContentLoaded", async() => {
     });
 
     UiAction.handlerEvents(selectCountry, "change", async(event) => {
-        initialData.citiesSelectedCountry = await UiAction.handlerSelectCountry(initialData, event);
+        try {
+            initialData.citiesSelectedCountry = await UiAction.handlerSelectCountry(initialData, event);
+        } catch (error) {
+            console.error("Помилка при завантаженні міст", error);
+        };
     });
 
     UiAction.handlerEvents(elemInputCityName, "input", (event) => {
         UiAction.handlerInputCity(initialData, event);
     });
 
-    UI.showBlockDataOfCountries(tableInformationOfCountries, formWeather, blockInfoVisitedCountries, showBtnHideData, blockInfoAboutPlacesCity, btnShowPlaces);
+    UI.showBlockDataOfCountries(initialData);
 
     API.fetchApiWeatherCityByDays(initialData);
 
     UiAction.handlerEvents(btnShowPlaces, "click", async() => {
-        const selectCityName = selectCity.value.trim();
-        // const selectCityName = initialData.selectCity.value.trim();
-        await UiAction.getListPlaces(selectCityName, blockInfoAboutPlacesCity);
+        try {
+            const selectCityName = selectCity.value.trim();
+            await UiAction.getListPlaces(selectCityName, blockInfoAboutPlacesCity);
+        } catch (error) {
+            console.error("Помилка при завантаженні списка місць", error);
+        };
     });
-
 });

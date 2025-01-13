@@ -1,39 +1,37 @@
 import * as UI from "../UI/index.js";
+import * as UiAction from "../UiAction/index.js";
 
 export function handlerInputCountry(initialData, event) {
     
     const {
+        formWeather,
+        elemInputCityName,
+        conditionWeatherCity,
         selectCountry,
         defaultOptionCountry,
-        conditionWeatherCity,
         selectCity,
         defaultOptionCity,
-        elemInputCityName,
-        formWeather,
-        allCountries,
         tableInformationOfCountries,
         tableInformationOfWeatherByDays,
-        showBtnHideData,
+        blockInfoAboutPlacesCity,
         btnShowPlaces,
-        blockInfoAboutPlacesCity
+        showBtnHideData,
+        allCountries
     } = initialData;
     
     const inputCountryName = event.target.value.trim().toLowerCase();
-    selectCountry.innerHTML = "";
+    UiAction.clearElements([selectCountry, conditionWeatherCity]);
     selectCountry.append(defaultOptionCountry);
-    conditionWeatherCity.innerHTML = "";
     
     if (inputCountryName === "") {
-        UI.showListCountries(allCountries, selectCountry);
-        tableInformationOfWeatherByDays.style.display = "none";
-        tableInformationOfCountries.style.display = "none";
-        showBtnHideData.style.display = "none";
-        selectCity.innerHTML = "";
+        UiAction.clearElements([selectCity, blockInfoAboutPlacesCity]);
         selectCity.append(defaultOptionCity);
-        selectCity.disabled = true;
-        elemInputCityName.disabled = true;
-        btnShowPlaces.style.display = "none";
-        blockInfoAboutPlacesCity.innerHTML = "";
+
+        UI.showListCountries(allCountries, selectCountry);
+
+        UiAction.hideElements([tableInformationOfCountries, tableInformationOfWeatherByDays, btnShowPlaces, showBtnHideData]);
+
+        UiAction.disableFields([elemInputCityName, selectCity], true);
     } else {
         UI.getFilterResult(allCountries, inputCountryName, {
             selectElem: selectCountry,
@@ -41,15 +39,13 @@ export function handlerInputCountry(initialData, event) {
             formWeather,
             isCountry: true
         });
-        tableInformationOfWeatherByDays.style.display = "none";
-        tableInformationOfCountries.style.display = "none";
-        showBtnHideData.style.display = "none";
+
         elemInputCityName.value = "";
-        selectCity.innerHTML = "";
+        UiAction.clearElements([selectCity, blockInfoAboutPlacesCity]);
         selectCity.append(defaultOptionCity);
-        selectCity.disabled = true;
-        elemInputCityName.disabled = true;
-        btnShowPlaces.style.display = "none";
-        blockInfoAboutPlacesCity.innerHTML = "";
+
+        UiAction.hideElements([tableInformationOfCountries, tableInformationOfWeatherByDays, btnShowPlaces, showBtnHideData]);
+
+        UiAction.disableFields([elemInputCityName, selectCity], true);
     };
 };

@@ -1,12 +1,20 @@
 import * as UI from "../UI/index.js";
 import * as UiAction from "../UiAction/index.js";
 
-export function showBlockDataOfCountries(tableInformationOfCountries, formWeather, blockInfoVisitedCountries, showBtnHideData, blockInfoAboutPlacesCity, btnShowPlaces) {
+export function showBlockDataOfCountries(initialData) {
+    
+    const {
+        formWeather,
+        tableInformationOfCountries,
+        blockInfoVisitedCountries,
+        showBtnHideData
+    } = initialData;
+    
     const showBtnHere = document.createElement("button");
     showBtnHere.textContent = "Тут";
 
     const showContent = document.createElement("p");
-    showContent.textContent = `Якщо ви хочете отримати дані про відвідувані країни, натисніть `;
+    showContent.textContent = "Якщо ви хочете отримати дані про відвідувані країни, натисніть";
 
     showBtnHideData.textContent = "Сховати дані";
 

@@ -7,34 +7,31 @@ export async function handlerSelectCountry(initialData, event) {
     const {
         elemInputCityName,
         conditionWeatherCity,
-        tableInformationOfCountries,
         selectCity,
-        allCountries,
+        tableInformationOfCountries,
         tableInformationOfWeatherByDays,
-        showBtnHideData,
+        blockInfoAboutPlacesCity,
         btnShowPlaces,
-        blockInfoAboutPlacesCity
+        showBtnHideData,
+        allCountries
     } = initialData;
     
     const selectCountryName = event.target.value;
+
+    UiAction.clearElements([conditionWeatherCity, blockInfoAboutPlacesCity]);
+
+    UiAction.hideElements([tableInformationOfCountries, tableInformationOfWeatherByDays, btnShowPlaces, showBtnHideData]);
+
     elemInputCityName.disabled = false;
-    conditionWeatherCity.innerHTML = "";
-    tableInformationOfWeatherByDays.style.display = "none";
-    tableInformationOfCountries.style.display = "none";
-    showBtnHideData.style.display = "none";
-    btnShowPlaces.style.display = "none";
-    blockInfoAboutPlacesCity.innerHTML = "";
 
 
     const foundCountry = allCountries.find(country => country.name.common === selectCountryName );
     UiAction.saveVisitedCountries(foundCountry);
-    // UI.showTableVisitedDataCountries(tableInformationOfCountries);
 
     if (selectCountryName) {
         try {
             initialData.citiesSelectedCountry = await API.fetchApiCitiesByCountry(selectCountryName);
-
-            const foundCountry = allCountries.find(country => country.name.common === selectCountryName);
+            // const foundCountry = allCountries.find(country => country.name.common === selectCountryName);
             let countryCode = "en";
 
             if (foundCountry && foundCountry.languages) {
