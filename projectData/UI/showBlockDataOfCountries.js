@@ -7,7 +7,7 @@ export function showBlockDataOfCountries(initialData) {
         formWeather,
         tableInformationOfCountries,
         blockInfoVisitedCountries,
-        showBtnHideData
+        btnHideData
     } = initialData;
     
     const showBtnHere = document.createElement("button");
@@ -16,7 +16,7 @@ export function showBlockDataOfCountries(initialData) {
     const showContent = document.createElement("p");
     showContent.textContent = "Якщо ви хочете отримати дані про відвідувані країни, натисніть";
 
-    showBtnHideData.textContent = "Сховати дані";
+    btnHideData.textContent = "Сховати дані";
 
     tableInformationOfCountries.style.display = "none";
     showContent.append(showBtnHere);
@@ -25,17 +25,17 @@ export function showBlockDataOfCountries(initialData) {
     
     UiAction.handlerEvents(showBtnHere, "click", () => {
         const visitedCountries = JSON.parse(localStorage.getItem("countries")) || [];
-        showBtnHideData.style.display = "block";
+        btnHideData.style.display = "block";
         if (visitedCountries.length === 0) {
             console.log("Ви не обрали ще ні одну країну");
             return;
         } else {
-            showContent.after(showBtnHideData);
+            showContent.after(btnHideData);
             UI.showTableVisitedDataCountries(tableInformationOfCountries);
 
-            UiAction.handlerEvents(showBtnHideData, "click", () => {
+            UiAction.handlerEvents(btnHideData, "click", () => {
                 tableInformationOfCountries.style.display = "none";
-                showBtnHideData.remove();
+                btnHideData.remove();
             });
         };
     });

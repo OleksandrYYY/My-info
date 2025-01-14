@@ -13,6 +13,7 @@ export function getInitialData() {
     const blockInfoAboutPlacesCity = document.createElement("div");
     const btnShowPlaces = document.createElement("button");
     const showBtnHideData = document.createElement("button");
+    const btnHideData = document.createElement("button");
     let allCountries = null;
     let citiesSelectedCountry = null;
 
@@ -31,6 +32,7 @@ export function getInitialData() {
         blockInfoAboutPlacesCity,
         btnShowPlaces,
         showBtnHideData,
+        btnHideData,
         allCountries,
         citiesSelectedCountry
     };

@@ -1,7 +1,7 @@
 import { API_KEY_PLACES } from "../generalData/constants.js";
 import { API_URL_PLACES } from "../generalData/constants.js";
 
-export async function fetchApiPlaces(cityName) {
+export async function fetchApiPlacesCity(cityName) {
     const url = `${API_URL_PLACES}?near=${cityName}&limit=30`;
     const options = {
         method: "GET",
@@ -17,7 +17,7 @@ export async function fetchApiPlaces(cityName) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
         const data = await response.json();
-        // console.log("Foursquare data:", data);
+        console.log(data);
         return data.results || [];
     } catch (error) {
         console.error("Помилка при отриманні місць із Foursquare:", error);

@@ -13,7 +13,8 @@ export function fetchApiWeatherCityByDays(initialData) {
         tableInformationOfWeatherByDays,
         blockInfoAboutPlacesCity,
         btnShowPlaces,
-        showBtnHideData
+        showBtnHideData,
+        btnHideData
     } = initialData;
 
     UiAction.handlerEvents(selectCity, "change", async(event) => {
@@ -21,7 +22,7 @@ export function fetchApiWeatherCityByDays(initialData) {
         showBtnWeatherByDays.textContent = "Показати погоду на 3 дні";
         showBtnHideData.textContent = "Сховати дані";
         const selectCityName = event.target.value;
-        UiAction.hideElements([tableInformationOfCountries, tableInformationOfWeatherByDays, showBtnHideData]);
+        UiAction.hideElements([tableInformationOfCountries, tableInformationOfWeatherByDays, showBtnHideData, btnHideData]);
         blockInfoAboutPlacesCity.innerHTML = "";
 
         tableInformationOfCountries.after(btnShowPlaces);
