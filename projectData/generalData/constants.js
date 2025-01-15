@@ -4,5 +4,5 @@ export const API_KEY_CITY = "a0998dcf88mshea1f13a87337751p1e17f9jsna8526f3ba791"
 // export const API_KEY_CITY = "c8e729438f01c02dc6e4e0684e6f1cb2ba3a7fabc6c3e44ea73faebaa86b83fc";
 export const API_KEY_PLACES = "fsq3Dkb5yVrpYq55r40wqNkIkXB2yiMGEZjDG4J31TaRigc=";
 export const API_URL_PLACES = "https://api.foursquare.com/v3/places/search";
-// export const API_URL_PLACES = "https://api.foursquare.com/v3/places/categories";
+export const API_KEY_MAPBOX = "pk.eyJ1Ijoib2xla3NhbmRyeXl5IiwiYSI6ImNtNXgwbGk4bzAzNTgybHF4Ynh3NXdxeHkifQ.yHzjBPDoxurbotNtIHjgAg";
 

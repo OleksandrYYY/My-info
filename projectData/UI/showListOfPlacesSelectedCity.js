@@ -1,6 +1,5 @@
 import * as UiAction from "../UiAction/index.js";
 import * as UI from "./index.js";
-import { API_KEY_PLACES } from "../generalData/constants.js";
 
 export function showListOfPlacesSelectedCity(places, blockInfoAboutPlacesCity, tableInformationOfCountries) {
     blockInfoAboutPlacesCity.innerHTML = "";
@@ -36,32 +35,6 @@ export function showListOfPlacesSelectedCity(places, blockInfoAboutPlacesCity, t
                 blockInfoAboutPlacesCity.style.display = "block";
                 UI.showListOfPlacesSelectedCity(places, blockInfoAboutPlacesCity, tableInformationOfCountries);
             });
-
-
-
-
-            // async function getPlaceDetails(fsq_id) {
-            //     const url = `https://api.foursquare.com/v3/places/${fsq_id}`;
-            //     const options = {
-            //         method: 'GET',
-            //         headers: {
-            //             Accept: 'application/json',
-            //             Authorization: API_KEY_PLACES
-            //         }
-            //     };
-                
-            //     try {
-            //         const response = await fetch(url, options);
-            //         if (!response.ok) {
-            //             throw new Error(`HTTP error! status: ${response.status}`);
-            //         }
-            //         const data = await response.json();
-            //         return data;
-            //     } catch (error) {
-            //         console.error("Помилка при отриманні деталей місця:", error);
-            //         return null;
-            //     }
-            // }
         });
     });
     blockInfoAboutPlacesCity.append(ul);
