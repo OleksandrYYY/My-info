@@ -8,7 +8,7 @@ import * as generalData from "../generalData/index.js";
 document.addEventListener("DOMContentLoaded", async() => {
     // localStorage.clear();
     const initialData = generalData.getInitialData();
-    const {elemInputCountryName, elemInputCityName, selectCountry, selectCity, tableInformationOfCountries, blockInfoAboutPlacesCity, btnShowPlaces} = initialData;
+    const {elemInputCountryName, elemInputCityName, selectCountry, selectCity, tableInformationOfCountries, blockInfoAboutPlacesCity, btnShowPlaces, mapContainer} = initialData;
 
     btnShowPlaces.textContent = "Показати популярні місця";
     btnShowPlaces.style.display = "none";
@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", async() => {
     UiAction.handlerEvents(btnShowPlaces, "click", async() => {
         try {
             const selectCityName = selectCity.value.trim();
-            await UiAction.getListPlacesSelectedCity(selectCityName, blockInfoAboutPlacesCity, tableInformationOfCountries);
+            await UiAction.getListPlacesSelectedCity(selectCityName, blockInfoAboutPlacesCity, tableInformationOfCountries, initialData, mapContainer);
         } catch (error) {
             console.error("Помилка при завантаженні списка місць", error);
         };

@@ -14,6 +14,9 @@ export function getInitialData() {
     const btnShowPlaces = document.createElement("button");
     const showBtnHideData = document.createElement("button");
     const btnHideData = document.createElement("button");
+    const mapContainer = document.createElement("div");
+    let map = null;
+    let markers = [];
     let allCountries = null;
     let citiesSelectedCountry = null;
 
@@ -33,6 +36,9 @@ export function getInitialData() {
         btnShowPlaces,
         showBtnHideData,
         btnHideData,
+        mapContainer,
+        map,
+        markers,
         allCountries,
         citiesSelectedCountry
     };

@@ -7,4 +7,5 @@ export { showTableWeatherByDays } from "./showTableWeatherByDays.js";
 export { showBlockDataOfCountries } from "./showBlockDataOfCountries.js";
 export { showPlaces } from "./showPlaces.js";
 export { showListOfPlacesSelectedCity } from "./showListOfPlacesSelectedCity.js";
-
+export { initializeMap } from "./initializeMap.js";
+export { addMarkersToMap } from "./addMarkersToMap.js";
