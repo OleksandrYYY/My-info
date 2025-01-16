@@ -1,7 +1,14 @@
-// import { API_KEY_MAPBOX } from "../generalData/constants.js";
+import * as UI from "../UI/index.js";
 
-export function getDataWeatherCity(dataWeatherCity, conditionWeatherCity, formWeather) {
+export function getDataWeatherCity(dataWeatherCity, initialData) {
     const {current, location} = dataWeatherCity;
+    const {
+        formWeather,
+        conditionWeatherCity,
+        blockInfoAboutPlacesCity,
+        mapContainer,
+        map
+    } = initialData;
     
     conditionWeatherCity.innerHTML = `
         <h2>Дані про погоду в реальному часі:</h2>
@@ -15,22 +22,25 @@ export function getDataWeatherCity(dataWeatherCity, conditionWeatherCity, formWe
     `;
     formWeather.after(conditionWeatherCity);
 
-    // const mapContainer = document.createElement("div");
-    // mapContainer.id = "mapContainer";
-    // mapContainer.style.width = "700px";
-    // mapContainer.style.height = "500px";
-    // conditionWeatherCity.append(mapContainer);
+    let center = [0, 0];
+    const lat = location.lat;
+    const lng = location.lon;
+    center = [lng, lat];
 
-    // mapboxgl.accessToken = API_KEY_MAPBOX;
+    if(!map) {
+        initialData.map = UI.initializeMap(mapContainer, blockInfoAboutPlacesCity, center, 10);
+        // const bounds = new mapboxgl.LngLatBounds();
+        // const marker = new mapboxgl.Marker()
+        //     .setLngLat(center)
+        //     .addTo(map);
 
-    // const map = new mapboxgl.Map({
-    //     container: mapContainer,
-    //     style: "mapbox://styles/mapbox/streets-v11",
-    //     center: [location.lon, location.lat],
-    //     zoom: 8,
-    // });
-
-    // new mapboxgl.Marker()
-    //     .setLngLat([location.lon, location.lat])
-    //     .addTo(map);
+        // initialData.markers.push(marker);
+        // bounds.extend([lng, lat]);
+        // map.fitBounds(bounds, { padding: 50 });
+    } else {
+        map.setCenter(center);
+        map.setZoom(10);
+        initialData.markers.forEach(marker => marker.remove());
+        initialData.markers.length = 0;
+    };
 };

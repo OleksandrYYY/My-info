@@ -32,11 +32,10 @@ export function fetchApiWeatherCityByDays(initialData) {
             try {
                 const response = await fetch(`${API_BASE_URL}/forecast.json?key=${API_KEY}&q=${selectCityName}&days=3`);
                 const dataResponse = await response.json();
-
+                console.log(dataResponse);
                 UiAction.displayElements([blockInfoAboutPlacesCity, btnShowPlaces]);
-                // tableInformationOfCountries.after(btnShowPlaces);
-                // btnShowPlaces.after(blockInfoAboutPlacesCity);
-                UI.getDataWeatherCity(dataResponse, conditionWeatherCity, formWeather);
+                
+                UI.getDataWeatherCity(dataResponse, initialData);
                 conditionWeatherCity.append(showBtnWeatherByDays);
 
                 UiAction.handlerEvents(showBtnWeatherByDays, "click", () => {
