@@ -29,18 +29,22 @@ export function getDataWeatherCity(dataWeatherCity, initialData) {
 
     if(!map) {
         initialData.map = UI.initializeMap(mapContainer, blockInfoAboutPlacesCity, center, 10);
-        // const bounds = new mapboxgl.LngLatBounds();
-        // const marker = new mapboxgl.Marker()
-        //     .setLngLat(center)
-        //     .addTo(map);
+        const marker = new mapboxgl.Marker()
+            .setLngLat(center)
+            .addTo(initialData.map);
 
-        // initialData.markers.push(marker);
-        // bounds.extend([lng, lat]);
-        // map.fitBounds(bounds, { padding: 50 });
+        initialData.markers.push(marker);
     } else {
-        map.setCenter(center);
-        map.setZoom(10);
         initialData.markers.forEach(marker => marker.remove());
         initialData.markers.length = 0;
+
+        map.setCenter(center);
+        map.setZoom(10);
+
+        const marker = new mapboxgl.Marker()
+            .setLngLat(center)
+            .addTo(map);
+
+        initialData.markers.push(marker);
     };
 };

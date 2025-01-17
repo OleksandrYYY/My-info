@@ -9,3 +9,4 @@ export { showPlaces } from "./showPlaces.js";
 export { showListOfPlacesSelectedCity } from "./showListOfPlacesSelectedCity.js";
 export { initializeMap } from "./initializeMap.js";
 export { addMarkersToMap } from "./addMarkersToMap.js";
+export { upgradeContainerMarker } from "./upgradeContainerMarker.js";

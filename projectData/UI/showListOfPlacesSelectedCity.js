@@ -38,17 +38,16 @@ export function showListOfPlacesSelectedCity(places, blockInfoAboutPlacesCity, t
                 UI.showListOfPlacesSelectedCity(places, blockInfoAboutPlacesCity, tableInformationOfCountries, initialData);
             });
         });
-        // if (!initialData.map) {
-        //     let center = [0, 0];
-        //     if (places.length > 0) {
-        //         const lat = places[0].geocodes.main.latitude;
-        //         const lng = places[0].geocodes.main.longitude;
-        //         center = [lng, lat];
-        //     };
-
-        //     initialData.map = UI.initializeMap(mapContainer, blockInfoAboutPlacesCity, center, 10);
-        // };
+        
         UI.addMarkersToMap(initialData.map, initialData.markers, places);
+
+        UiAction.handlerEvents(li, "mouseover", () => {
+            UI.upgradeContainerMarker(place, initialData.markers, true);
+        });
+
+        UiAction.handlerEvents(li, "mouseout", () => {
+            UI.upgradeContainerMarker(place, initialData.markers, false);
+        });
     });
     blockInfoAboutPlacesCity.append(ul);
 };

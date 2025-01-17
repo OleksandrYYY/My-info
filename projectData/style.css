@@ -13,3 +13,11 @@
     border: 1px solid #999;
     padding: 8px;
 }
+
+.marker-hover {
+    /* transform: scale(1.5);
+    z-index: 999;
+    transition: transform 0.2s; */
+    background-color: yellow;
+    border: 2px solid orange;
+}
