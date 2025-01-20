@@ -17,6 +17,8 @@ export function handlerInputCountry(initialData, event) {
         btnShowPlaces,
         showBtnHideData,
         btnHideData,
+        mapContainer,
+        createSelectStylesMap,
         allCountries
     } = initialData;
     
@@ -30,7 +32,7 @@ export function handlerInputCountry(initialData, event) {
 
         UI.showListCountries(allCountries, selectCountry);
 
-        UiAction.hideElements([tableInformationOfCountries, tableInformationOfWeatherByDays, btnShowPlaces, showBtnHideData, btnHideData]);
+        UiAction.hideElements([tableInformationOfCountries, tableInformationOfWeatherByDays, btnShowPlaces, showBtnHideData, btnHideData, mapContainer, createSelectStylesMap]);
 
         UiAction.disableFields([elemInputCityName, selectCity], true);
     } else {
@@ -45,7 +47,7 @@ export function handlerInputCountry(initialData, event) {
         UiAction.clearElements([selectCity, blockInfoAboutPlacesCity]);
         selectCity.append(defaultOptionCity);
 
-        UiAction.hideElements([tableInformationOfCountries, tableInformationOfWeatherByDays, btnShowPlaces, showBtnHideData, btnHideData]);
+        UiAction.hideElements([tableInformationOfCountries, tableInformationOfWeatherByDays, btnShowPlaces, showBtnHideData, btnHideData, mapContainer, createSelectStylesMap]);
 
         UiAction.disableFields([elemInputCityName, selectCity], true);
     };

@@ -17,6 +17,8 @@ export function handlerInputCity(initialData, event) {
         btnShowPlaces,
         showBtnHideData,
         btnHideData,
+        mapContainer,
+        createSelectStylesMap,
         allCountries,
         citiesSelectedCountry,
     } = initialData;
@@ -33,7 +35,7 @@ export function handlerInputCity(initialData, event) {
 
         UI.showListCountries(allCountries, selectCountry);
 
-        UiAction.hideElements([tableInformationOfCountries, btnShowPlaces, showBtnHideData, tableInformationOfWeatherByDays, btnHideData]);
+        UiAction.hideElements([tableInformationOfCountries, btnShowPlaces, showBtnHideData, tableInformationOfWeatherByDays, btnHideData, mapContainer, createSelectStylesMap]);
 
         UiAction.disableFields([elemInputCityName, selectCity], true);
     } else {
@@ -44,7 +46,7 @@ export function handlerInputCity(initialData, event) {
             isCountry: false
         });
 
-        UiAction.hideElements([tableInformationOfCountries, btnShowPlaces, showBtnHideData, tableInformationOfWeatherByDays, btnHideData]);
+        UiAction.hideElements([tableInformationOfCountries, btnShowPlaces, showBtnHideData, tableInformationOfWeatherByDays, btnHideData, mapContainer, createSelectStylesMap]);
         blockInfoAboutPlacesCity.innerHTML = "";
     };
 };

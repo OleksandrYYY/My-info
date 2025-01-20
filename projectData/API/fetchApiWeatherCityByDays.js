@@ -14,7 +14,9 @@ export function fetchApiWeatherCityByDays(initialData) {
         blockInfoAboutPlacesCity,
         btnShowPlaces,
         showBtnHideData,
-        btnHideData
+        btnHideData,
+        mapContainer,
+        createSelectStylesMap
     } = initialData;
 
     UiAction.handlerEvents(selectCity, "change", async(event) => {
@@ -23,7 +25,7 @@ export function fetchApiWeatherCityByDays(initialData) {
         showBtnHideData.textContent = "Сховати дані";
         const selectCityName = event.target.value;
         UiAction.hideElements([tableInformationOfCountries, tableInformationOfWeatherByDays, showBtnHideData, btnHideData]);
-        blockInfoAboutPlacesCity.innerHTML = "";
+        UiAction.clearElements([blockInfoAboutPlacesCity, createSelectStylesMap]);
 
         tableInformationOfCountries.after(btnShowPlaces);
         btnShowPlaces.after(blockInfoAboutPlacesCity);
@@ -34,6 +36,9 @@ export function fetchApiWeatherCityByDays(initialData) {
                 const dataResponse = await response.json();
                 console.log(dataResponse);
                 UiAction.displayElements([blockInfoAboutPlacesCity, btnShowPlaces]);
+
+                mapContainer.style.display = "block";
+                createSelectStylesMap.style.display = "inline-block";
                 
                 UI.getDataWeatherCity(dataResponse, initialData);
                 conditionWeatherCity.append(showBtnWeatherByDays);

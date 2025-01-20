@@ -14,6 +14,8 @@ export async function handlerSelectCountry(initialData, event) {
         btnShowPlaces,
         showBtnHideData,
         btnHideData,
+        mapContainer,
+        createSelectStylesMap,
         allCountries
     } = initialData;
     
@@ -21,7 +23,7 @@ export async function handlerSelectCountry(initialData, event) {
 
     UiAction.clearElements([conditionWeatherCity, blockInfoAboutPlacesCity]);
 
-    UiAction.hideElements([tableInformationOfCountries, tableInformationOfWeatherByDays, btnShowPlaces, showBtnHideData, btnHideData]);
+    UiAction.hideElements([tableInformationOfCountries, tableInformationOfWeatherByDays, btnShowPlaces, showBtnHideData, btnHideData, mapContainer, createSelectStylesMap]);
 
     elemInputCityName.disabled = false;
 
