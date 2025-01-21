@@ -11,3 +11,4 @@ export { initializeMap } from "./initializeMap.js";
 export { addMarkersToMap } from "./addMarkersToMap.js";
 export { upgradeContainerMarker } from "./upgradeContainerMarker.js";
 export { showStylesOfMap } from "./showStylesOfMap.js";
+export { showRouteOnMap } from "./showRouteOnMap.js";

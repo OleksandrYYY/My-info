@@ -1,5 +1,6 @@
 import * as UiAction from "../UiAction/index.js";
-import * as UI from "./index.js";
+// import * as UI from "./index.js";
+import * as UI from "../UI/index.js";
 
 export function showListOfPlacesSelectedCity(places, blockInfoAboutPlacesCity, tableInformationOfCountries, initialData) {
     blockInfoAboutPlacesCity.innerHTML = "";
@@ -39,7 +40,7 @@ export function showListOfPlacesSelectedCity(places, blockInfoAboutPlacesCity, t
             });
         });
         
-        UI.addMarkersToMap(initialData.map, initialData.markers, places);
+        UI.addMarkersToMap(initialData.map, initialData.markers, places, initialData);
 
         UiAction.handlerEvents(li, "mouseover", () => {
             UI.upgradeContainerMarker(place, initialData.markers, true);

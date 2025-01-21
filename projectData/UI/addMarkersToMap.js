@@ -1,4 +1,6 @@
-export function addMarkersToMap(map, markers, places) {
+import * as UI from "../UI/index.js";
+
+export function addMarkersToMap(map, markers, places, initialData) {
     if (!map) {
         console.error("Немає екземпляра map!");
         return;
@@ -30,6 +32,28 @@ export function addMarkersToMap(map, markers, places) {
 
         markers.push(marker);
         bounds.extend([lng, lat]);
+
+        marker.getElement().addEventListener("click", () => {
+            const { startMarker } = initialData;
+            const coordsStartMarker = [lng, lat];
+
+            if (!startMarker) {
+                initialData.startMarker = coordsStartMarker;
+                marker.getElement().classList.add("marker-selected-start");
+            } else {
+                const startCoordsMarker = startMarker;
+                const endCoordsMarker = coordsStartMarker;
+
+                UI.showRouteOnMap(map, startCoordsMarker, endCoordsMarker);
+
+                // Після побудови можна обнулити start або лишати (залежить від вашої логіки)
+                initialData.startMarker = null;
+
+                markers.forEach((m) => {
+                    m.getElement().classList.remove("marker-selected-start");
+                });
+            };
+        });
     });
 
     if (markers.length > 0) {

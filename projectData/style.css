@@ -21,3 +21,11 @@
     background-color: yellow;
     border: 2px solid orange;
 }
+
+.marker-selected-start {
+    border: 3px solid #2ecc71;
+    border-radius: 50%;
+    transform: scale(1.2);
+    z-index: 999;
+    transition: transform 0.2s;
+}
