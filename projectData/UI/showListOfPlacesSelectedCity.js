@@ -1,8 +1,14 @@
 import * as UiAction from "../UiAction/index.js";
-// import * as UI from "./index.js";
 import * as UI from "../UI/index.js";
 
-export function showListOfPlacesSelectedCity(places, blockInfoAboutPlacesCity, tableInformationOfCountries, initialData) {
+export function showListOfPlacesSelectedCity(places, initialData) {
+
+    const {
+        tableInformationOfCountries,
+        blockInfoAboutPlacesCity,
+        markers
+    } = initialData;
+
     blockInfoAboutPlacesCity.innerHTML = "";
     const ul = document.createElement("ul");
     console.log(places);
@@ -31,23 +37,24 @@ export function showListOfPlacesSelectedCity(places, blockInfoAboutPlacesCity, t
 
             const btnBack = document.createElement("button");
             btnBack.textContent = "Назад";
+            // кожний раз не треба створювати кнопку
             descriptionOfPlace.append(btnBack);
 
             UiAction.handlerEvents(btnBack, "click", () => {
                 descriptionOfPlace.remove();
                 blockInfoAboutPlacesCity.style.display = "block";
-                UI.showListOfPlacesSelectedCity(places, blockInfoAboutPlacesCity, tableInformationOfCountries, initialData);
+                UI.showListOfPlacesSelectedCity(places, initialData);
             });
         });
         
-        UI.addMarkersToMap(initialData.map, initialData.markers, places, initialData);
+        UI.addMarkersToMap(places, initialData);
 
         UiAction.handlerEvents(li, "mouseover", () => {
-            UI.upgradeContainerMarker(place, initialData.markers, true);
+            UI.upgradeContainerMarker(place, markers, true);
         });
 
         UiAction.handlerEvents(li, "mouseout", () => {
-            UI.upgradeContainerMarker(place, initialData.markers, false);
+            UI.upgradeContainerMarker(place, markers, false);
         });
     });
     blockInfoAboutPlacesCity.append(ul);

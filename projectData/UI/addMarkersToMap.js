@@ -1,6 +1,12 @@
 import * as UI from "../UI/index.js";
 
-export function addMarkersToMap(map, markers, places, initialData) {
+export function addMarkersToMap(places, initialData) {
+
+    const {
+        map,
+        markers
+    } = initialData;
+
     if (!map) {
         console.error("Немає екземпляра map!");
         return;
@@ -34,23 +40,22 @@ export function addMarkersToMap(map, markers, places, initialData) {
         bounds.extend([lng, lat]);
 
         marker.getElement().addEventListener("click", () => {
-            const { startMarker } = initialData;
+            // const { startMarker } = initialData;
             const coordsStartMarker = [lng, lat];
-
-            if (!startMarker) {
+            
+            if (!initialData.startMarker) {
                 initialData.startMarker = coordsStartMarker;
                 marker.getElement().classList.add("marker-selected-start");
             } else {
-                const startCoordsMarker = startMarker;
+                const startCoordsMarker = initialData.startMarker;
                 const endCoordsMarker = coordsStartMarker;
 
                 UI.showRouteOnMap(map, startCoordsMarker, endCoordsMarker);
 
-                // Після побудови можна обнулити start або лишати (залежить від вашої логіки)
                 initialData.startMarker = null;
 
-                markers.forEach((m) => {
-                    m.getElement().classList.remove("marker-selected-start");
+                markers.forEach((marker) => {
+                    marker.getElement().classList.remove("marker-selected-start");
                 });
             };
         });

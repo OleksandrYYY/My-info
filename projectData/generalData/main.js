@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", async() => {
     UiAction.handlerEvents(btnShowPlaces, "click", async() => {
         try {
             const selectCityName = selectCity.value.trim();
-            await UiAction.getListPlacesSelectedCity(selectCityName, blockInfoAboutPlacesCity, tableInformationOfCountries, initialData);
+            await UiAction.getListPlacesSelectedCity(selectCityName, initialData);
         } catch (error) {
             console.error("Помилка при завантаженні списка місць", error);
         };
