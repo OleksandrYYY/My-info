@@ -12,3 +12,4 @@ export { addMarkersToMap } from "./addMarkersToMap.js";
 export { upgradeContainerMarker } from "./upgradeContainerMarker.js";
 export { showStylesOfMap } from "./showStylesOfMap.js";
 export { showRouteOnMap } from "./showRouteOnMap.js";
+export { addMarkersOfCitiesToMap } from "./addMarkersOfCitiesToMap.js";

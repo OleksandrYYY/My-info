@@ -15,6 +15,7 @@ document.addEventListener("DOMContentLoaded", async() => {
 
     try {
         initialData.allCountries = await API.fetchApiGetCountries(initialData);
+        console.log(initialData.allCountries);
     } catch (error) {
         console.error("Помилка при завантаженні країн:", error);
     };

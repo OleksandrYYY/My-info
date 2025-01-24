@@ -1,5 +1,6 @@
 import * as UI from "../UI/index.js";
 import * as UiAction from "../UiAction/index.js";
+import * as API from "../API/index.js";
 import { API_BASE_URL } from "../generalData/constants.js";
 import { API_KEY } from "../generalData/constants.js";
 
@@ -36,6 +37,8 @@ export function fetchApiWeatherCityByDays(initialData) {
                 const dataResponse = await response.json();
                 console.log(dataResponse);
                 UiAction.displayElements([blockInfoAboutPlacesCity, btnShowPlaces]);
+
+                // API.fetchApiGetCityCoords(selectCityName, initialData.selectedCCA2);
 
                 mapContainer.style.display = "block";
                 createSelectStylesMap.style.display = "inline-block";
