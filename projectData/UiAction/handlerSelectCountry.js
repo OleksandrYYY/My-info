@@ -16,6 +16,8 @@ export async function handlerSelectCountry(initialData, event) {
         btnHideData,
         mapContainer,
         createSelectStylesMap,
+        map,
+        startMarker,
         allCountries
     } = initialData;
     
@@ -24,7 +26,6 @@ export async function handlerSelectCountry(initialData, event) {
     UiAction.clearElements([conditionWeatherCity, blockInfoAboutPlacesCity]);
 
     UiAction.hideElements([tableInformationOfCountries, tableInformationOfWeatherByDays, btnShowPlaces, showBtnHideData, btnHideData, mapContainer, createSelectStylesMap]);
-
     elemInputCityName.disabled = false;
 
 
@@ -43,6 +44,35 @@ export async function handlerSelectCountry(initialData, event) {
             initialData.citiesSelectedCountry = await API.fetchApiCitiesByCountry(selectCountryName);
             // initialData.citiesSelectedCountry = cities; 
 
+            const allCoords = await API.fetchApiAllCoordsCities(initialData.citiesSelectedCountry, initialData.selectedCCA2);
+            console.log("Координати всіх міст:", allCoords);
+            initialData.citiesCoords = allCoords;
+            console.log(allCoords);
+
+            let center = [0, 0];
+            if (allCoords.length > 0) {
+                const first = allCoords[0];
+                if (first.lng && first.lat) {
+                    center = [first.lng, first.lat];
+                };
+            };
+
+            if(!map) {
+                initialData.map = UI.initializeMap(mapContainer, tableInformationOfCountries, center, 10);
+            } else {
+                initialData.map.setCenter(center);
+                initialData.map.setZoom(10);
+            };
+
+            mapContainer.style.display = "block";
+            createSelectStylesMap.style.display = "inline-block";
+
+            if (initialData.map) {
+                initialData.map.resize();
+            };
+
+            UI.addMarkersOfCitiesToMap(initialData.map, initialData.markers, allCoords, startMarker);
+
             let countryCode = "en";
 
             if (foundCountry && foundCountry.languages) {
@@ -56,11 +86,6 @@ export async function handlerSelectCountry(initialData, event) {
 
             UI.showListCities(initialData.citiesSelectedCountry, initialData, countryCode);
             selectCity.disabled = false;
-
-            const allCoords = await API.fetchApiAllCoordsCities(initialData.citiesSelectedCountry, initialData.selectedCCA2);
-            console.log("Координати всіх міст:", allCoords);
-            initialData.citiesCoords = allCoords;
-            console.log(allCoords);
 
             return initialData.citiesSelectedCountry;
         } catch (error) {

@@ -6,6 +6,7 @@ export function getDataWeatherCity(dataWeatherCity, initialData) {
     const {
         formWeather,
         conditionWeatherCity,
+        tableInformationOfCountries,
         blockInfoAboutPlacesCity,
         mapContainer,
         map
@@ -29,7 +30,7 @@ export function getDataWeatherCity(dataWeatherCity, initialData) {
     center = [lng, lat];
 
     if(!map) {
-        initialData.map = UI.initializeMap(mapContainer, blockInfoAboutPlacesCity, center, 10);
+        initialData.map = UI.initializeMap(mapContainer, tableInformationOfCountries, center, 10);
         const marker = new mapboxgl.Marker()
             .setLngLat(center)
             .addTo(initialData.map);

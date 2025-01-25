@@ -1,11 +1,12 @@
 import { API_KEY_MAPBOX } from "../generalData/constants.js";
 
-export function initializeMap(mapContainer, blockInfoAboutPlacesCity, center = [0, 0], zoom = 2) {
+export function initializeMap(mapContainer, tableInformationOfCountries, center = [0, 0], zoom = 2) {
 
     mapContainer.id = "mapContainer";
     mapContainer.style.width = "700px";
     mapContainer.style.height = "500px";
-    blockInfoAboutPlacesCity.after(mapContainer);
+    // blockInfoAboutPlacesCity.after(mapContainer);
+    tableInformationOfCountries.after(mapContainer);
     
     mapboxgl.accessToken = API_KEY_MAPBOX;
 

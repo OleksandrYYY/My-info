@@ -19,8 +19,6 @@ export async function fetchApiGetCityCoords(cityName, countryCode) {
             lat: parseFloat(infoCity.lat),
             lng: parseFloat(infoCity.lng)
         };
-        // console.log(data);
-        // return data;
     } catch (error) {
         console.error(error);
     };

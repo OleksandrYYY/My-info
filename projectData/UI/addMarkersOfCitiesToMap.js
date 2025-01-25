@@ -1,4 +1,6 @@
-export function addMarkersOfCitiesToMap(map, markersArray, citiesCoords) {
+import * as UI from "../UI/index.js";
+
+export function addMarkersOfCitiesToMap(map, markersArray, citiesCoords, startMarker) {
     markersArray.forEach((marker) => marker.remove());
     markersArray.length = 0;
 
@@ -20,6 +22,27 @@ export function addMarkersOfCitiesToMap(map, markersArray, citiesCoords) {
         markersArray.push(marker);
 
         bounds.extend([lng, lat]);
+
+        marker.getElement().addEventListener("click", () => {
+            // const { startMarker } = initialData;
+            const coordsStartMarker = [lng, lat];
+                    
+            if (!startMarker) {
+                startMarker = coordsStartMarker;
+                marker.getElement().classList.add("marker-selected-start");
+            } else {
+                const startCoordsMarker = startMarker;
+                const endCoordsMarker = coordsStartMarker;
+        
+                UI.showRouteOnMap(map, startCoordsMarker, endCoordsMarker);
+        
+                startMarker = null;
+        
+                markersArray.forEach((marker) => {
+                    marker.getElement().classList.remove("marker-selected-start");
+                });
+            };
+        });
     };
     
     if (citiesCoords.length > 0) {
