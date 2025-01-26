@@ -42,7 +42,20 @@ export async function handlerSelectCountry(initialData, event) {
     if (selectCountryName) {
         try {
             initialData.citiesSelectedCountry = await API.fetchApiCitiesByCountry(selectCountryName);
-            // initialData.citiesSelectedCountry = cities; 
+
+            let countryCode = "en";
+
+            if (foundCountry && foundCountry.languages) {
+                const languagesKeys = Object.keys(foundCountry.languages);
+                    
+                if (languagesKeys.length > 0) {
+                    const firstLanguageCode = languagesKeys[0];
+                    countryCode = firstLanguageCode.slice(0,2);
+                };
+            };
+
+            UI.showListCities(initialData.citiesSelectedCountry, initialData, countryCode);
+            selectCity.disabled = false;
 
             const allCoords = await API.fetchApiAllCoordsCities(initialData.citiesSelectedCountry, initialData.selectedCCA2);
             console.log("Координати всіх міст:", allCoords);
@@ -58,7 +71,7 @@ export async function handlerSelectCountry(initialData, event) {
             };
 
             if(!map) {
-                initialData.map = UI.initializeMap(mapContainer, tableInformationOfCountries, center, 10);
+                initialData.map = UI.initializeMap(initialData, center, 10);
             } else {
                 initialData.map.setCenter(center);
                 initialData.map.setZoom(10);
@@ -71,21 +84,7 @@ export async function handlerSelectCountry(initialData, event) {
                 initialData.map.resize();
             };
 
-            UI.addMarkersOfCitiesToMap(initialData.map, initialData.markers, allCoords, startMarker);
-
-            let countryCode = "en";
-
-            if (foundCountry && foundCountry.languages) {
-                const languagesKeys = Object.keys(foundCountry.languages);
-                    
-                if (languagesKeys.length > 0) {
-                    const firstLanguageCode = languagesKeys[0];
-                    countryCode = firstLanguageCode.slice(0,2);
-                };
-            };
-
-            UI.showListCities(initialData.citiesSelectedCountry, initialData, countryCode);
-            selectCity.disabled = false;
+            UI.addMarkersOfCitiesToMap(initialData, allCoords);
 
             return initialData.citiesSelectedCountry;
         } catch (error) {

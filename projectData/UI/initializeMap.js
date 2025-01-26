@@ -1,6 +1,10 @@
 import { API_KEY_MAPBOX } from "../generalData/constants.js";
 
-export function initializeMap(mapContainer, tableInformationOfCountries, center = [0, 0], zoom = 2) {
+export function initializeMap(initialData, center = [0, 0], zoom = 2) {
+    const {
+        tableInformationOfCountries,
+        mapContainer
+    } = initialData;
 
     mapContainer.id = "mapContainer";
     mapContainer.style.width = "700px";

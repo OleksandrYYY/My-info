@@ -1,51 +1,54 @@
 import * as UI from "../UI/index.js";
 
-export function addMarkersOfCitiesToMap(map, markersArray, citiesCoords, startMarker) {
-    markersArray.forEach((marker) => marker.remove());
-    markersArray.length = 0;
+export function addMarkersOfCitiesToMap(initialData, allCoords) {
+    const {
+        map,
+        markers
+    } = initialData;
+
+    markers.forEach((marker) => marker.remove());
+    markers.length = 0;
 
     const bounds = new mapboxgl.LngLatBounds();
 
-    for (const cityData of citiesCoords) {
+    for (const cityData of allCoords) {
         const { lat, lng, city } = cityData;
 
-        // Якщо null
         if (!lat || !lng) {
             continue;
-        }
+        };
 
         const marker = new mapboxgl.Marker()
             .setLngLat([lng, lat])
             .setPopup(new mapboxgl.Popup({ offset: 25 }).setText(`Місто: ${city}`))
             .addTo(map);
 
-        markersArray.push(marker);
+        markers.push(marker);
 
         bounds.extend([lng, lat]);
 
         marker.getElement().addEventListener("click", () => {
-            // const { startMarker } = initialData;
             const coordsStartMarker = [lng, lat];
                     
-            if (!startMarker) {
-                startMarker = coordsStartMarker;
+            if (!initialData.startMarker) {
+                initialData.startMarker = coordsStartMarker;
                 marker.getElement().classList.add("marker-selected-start");
             } else {
-                const startCoordsMarker = startMarker;
+                const startCoordsMarker = initialData.startMarker;
                 const endCoordsMarker = coordsStartMarker;
         
                 UI.showRouteOnMap(map, startCoordsMarker, endCoordsMarker);
         
-                startMarker = null;
+                initialData.startMarker = null;
         
-                markersArray.forEach((marker) => {
+                markers.forEach((marker) => {
                     marker.getElement().classList.remove("marker-selected-start");
                 });
             };
         });
     };
     
-    if (citiesCoords.length > 0) {
+    if (allCoords.length > 0) {
         map.fitBounds(bounds, { padding: 50 });
     };
 };
