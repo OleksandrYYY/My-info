@@ -31,6 +31,15 @@ export function fetchApiWeatherCityByDays(initialData) {
         tableInformationOfCountries.after(btnShowPlaces);
         btnShowPlaces.after(blockInfoAboutPlacesCity);
 
+        if (initialData.map) {
+            if (initialData.map.getLayer("route")) {
+                initialData.map.removeLayer("route");
+            };
+            if (initialData.map.getSource("route")) {
+                initialData.map.removeSource("route");
+            };
+        };
+
         if (selectCityName) {
             try {
                 const response = await fetch(`${API_BASE_URL}/forecast.json?key=${API_KEY}&q=${selectCityName}&days=3`);

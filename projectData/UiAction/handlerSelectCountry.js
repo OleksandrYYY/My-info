@@ -84,7 +84,9 @@ export async function handlerSelectCountry(initialData, event) {
                 initialData.map.resize();
             };
 
-            UI.addMarkersOfCitiesToMap(initialData, allCoords);
+            // UI.addMarkersOfCitiesToMap(initialData, allCoords);
+            // UI.addCityLabelsToMap(initialData, allCoords);
+            UiAction.enableCityClickOnMap(initialData);
 
             return initialData.citiesSelectedCountry;
         } catch (error) {

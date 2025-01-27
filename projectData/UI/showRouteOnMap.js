@@ -6,7 +6,12 @@ export async function showRouteOnMap(map ,start, end) {
             console.warn("Нема двох точок для маршруту.");
             return;
         };
-    
+        // if (map.getLayer('route')) {
+        //     map.removeLayer('route');
+        //   }
+        //   if (map.getSource('route')) {
+        //     map.removeSource('route');
+        // };
         const url = `https://api.mapbox.com/directions/v5/mapbox/driving/${start[0]},${start[1]};${end[0]},${end[1]}?geometries=geojson&overview=full&language=uk&access_token=${API_KEY_MAPBOX}`;
         
         const response = await fetch(url);
