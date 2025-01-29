@@ -9,4 +9,5 @@ export { hideElements } from "./hideElements.js";
 export { disableFields } from "./disableFields.js";
 export { clearElements } from "./clearElements.js";
 export { displayElements } from "./displayElements.js";
-export { enableCityClickOnMap } from "./enableCityClickOnMap.js";
+export { enableClickOnMap } from "./enableClickOnMap.js";
+export { getLocationCoordinates } from "./getLocationCoordinates.js";

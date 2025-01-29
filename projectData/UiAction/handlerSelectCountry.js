@@ -1,5 +1,6 @@
 import * as UI from "../UI/index.js";
-import * as UiAction from "./index.js";
+// import * as UiAction from "./index.js";
+import * as UiAction from "../UiAction/index.js";
 import * as API from "../API/index.js";
 
 export async function handlerSelectCountry(initialData, event) {
@@ -86,7 +87,7 @@ export async function handlerSelectCountry(initialData, event) {
 
             // UI.addMarkersOfCitiesToMap(initialData, allCoords);
             // UI.addCityLabelsToMap(initialData, allCoords);
-            UiAction.enableCityClickOnMap(initialData);
+            UiAction.enableClickOnMap(initialData);
 
             return initialData.citiesSelectedCountry;
         } catch (error) {
