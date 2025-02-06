@@ -12,6 +12,7 @@ export function getInitialData() {
     const tableInformationOfWeatherByDays = document.querySelector("#info-weather-days");
     const blockInfoAboutPlacesCity = document.createElement("div");
     const btnShowPlaces = document.createElement("button");
+    const showBtnWeatherByDays = document.createElement("button");
     const showBtnHideData = document.createElement("button");
     const btnHideData = document.createElement("button");
     const mapContainer = document.createElement("div");
@@ -28,6 +29,7 @@ export function getInitialData() {
     ];
     const createSelectStylesMap = document.createElement("select");
     const defOptionStyleMap = document.createElement("option");
+    const containerLayerInfo = document.createElement("div");
     let map = null;
     let markers = [];
     let startMarker = null;
@@ -48,12 +50,14 @@ export function getInitialData() {
         tableInformationOfWeatherByDays,
         blockInfoAboutPlacesCity,
         btnShowPlaces,
+        showBtnWeatherByDays,
         showBtnHideData,
         btnHideData,
         mapContainer,
         stylesMap,
         createSelectStylesMap,
         defOptionStyleMap,
+        containerLayerInfo,
         map,
         markers,
         startMarker,

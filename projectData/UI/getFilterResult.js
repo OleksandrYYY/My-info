@@ -1,5 +1,4 @@
 export function getFilterResult(arrayOfElements, inputValue, options) {
-
     const {
         selectElem,
         conditionWeatherCity = null,
@@ -29,7 +28,7 @@ export function getFilterResult(arrayOfElements, inputValue, options) {
             selectElem.append(option);
         });
     } else {
-        formWeather.append(conditionWeatherCity)
+        formWeather.append(conditionWeatherCity);
         conditionWeatherCity.innerHTML = `<p>Такої назви ${inputValue} не існує в списку.</p>`;
     };
 };

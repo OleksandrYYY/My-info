@@ -34,22 +34,5 @@ export function showTableVisitedDataCountries(tableInformationOfCountries) {
     
             tbody.append(tableRowElem);
         });
-
-        // visitedCountries.forEach(({ nameCountry, capital, locale, population, borders }) => {
-        //     const tableRowElem = document.createElement("tr");
-        
-        //     // Формуємо масив зі значеннями, які потрібно вивести
-        //     const fields = [nameCountry, capital, locale, population, borders || "Немає"];
-        
-        //     // Для кожного елемента масиву створюємо <td> і додаємо до рядка
-        //     fields.forEach((field) => {
-        //         const cell = document.createElement("td");
-        //         cell.textContent = field;
-        //         tableRowElem.append(cell);
-        //     });
-        
-        //     // Додаємо сформований рядок до <tbody>
-        //     tbody.append(tableRowElem);
-        // });
     };
 };

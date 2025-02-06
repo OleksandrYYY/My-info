@@ -2,7 +2,6 @@ import * as UI from "../UI/index.js";
 import * as UiAction from "../UiAction/index.js";
 
 export function handlerInputCountry(initialData, event) {
-    
     const {
         formWeather,
         elemInputCityName,

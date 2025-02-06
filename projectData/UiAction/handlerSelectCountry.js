@@ -1,10 +1,8 @@
 import * as UI from "../UI/index.js";
-// import * as UiAction from "./index.js";
 import * as UiAction from "../UiAction/index.js";
 import * as API from "../API/index.js";
 
 export async function handlerSelectCountry(initialData, event) {
-    
     const {
         elemInputCityName,
         conditionWeatherCity,
@@ -18,7 +16,6 @@ export async function handlerSelectCountry(initialData, event) {
         mapContainer,
         createSelectStylesMap,
         map,
-        startMarker,
         allCountries
     } = initialData;
     
@@ -59,9 +56,7 @@ export async function handlerSelectCountry(initialData, event) {
             selectCity.disabled = false;
 
             const allCoords = await API.fetchApiAllCoordsCities(initialData.citiesSelectedCountry, initialData.selectedCCA2);
-            console.log("Координати всіх міст:", allCoords);
             initialData.citiesCoords = allCoords;
-            console.log(allCoords);
 
             let center = [0, 0];
             if (allCoords.length > 0) {
@@ -85,8 +80,6 @@ export async function handlerSelectCountry(initialData, event) {
                 initialData.map.resize();
             };
 
-            // UI.addMarkersOfCitiesToMap(initialData, allCoords);
-            // UI.addCityLabelsToMap(initialData, allCoords);
             UiAction.enableClickOnMap(initialData);
 
             return initialData.citiesSelectedCountry;

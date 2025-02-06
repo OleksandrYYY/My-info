@@ -1,7 +1,6 @@
 import * as UiAction from "../UiAction/index.js";
 
 export function showStylesOfMap(initialData) {
-
     const {
         mapContainer,
         stylesMap,

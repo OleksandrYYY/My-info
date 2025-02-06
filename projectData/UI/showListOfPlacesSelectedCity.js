@@ -2,7 +2,6 @@ import * as UiAction from "../UiAction/index.js";
 import * as UI from "../UI/index.js";
 
 export function showListOfPlacesSelectedCity(places, initialData) {
-
     const {
         tableInformationOfCountries,
         blockInfoAboutPlacesCity,
@@ -11,10 +10,8 @@ export function showListOfPlacesSelectedCity(places, initialData) {
 
     blockInfoAboutPlacesCity.innerHTML = "";
     const ul = document.createElement("ul");
-    console.log(places);
 
     places.forEach((place) => {
-        console.log(place);
         const li = document.createElement("li");
         li.textContent = place.name;
         ul.append(li);
@@ -37,7 +34,6 @@ export function showListOfPlacesSelectedCity(places, initialData) {
 
             const btnBack = document.createElement("button");
             btnBack.textContent = "Назад";
-            // кожний раз не треба створювати кнопку
             descriptionOfPlace.append(btnBack);
 
             UiAction.handlerEvents(btnBack, "click", () => {

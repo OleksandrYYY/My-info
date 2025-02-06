@@ -1,5 +1,4 @@
 import * as UI from "../UI/index.js";
-import * as UiAction from "../UiAction/index.js";
 
 export function getDataWeatherCity(dataWeatherCity, initialData) {
     const {current, location} = dataWeatherCity;
@@ -7,7 +6,6 @@ export function getDataWeatherCity(dataWeatherCity, initialData) {
         formWeather,
         conditionWeatherCity,
         tableInformationOfCountries,
-        blockInfoAboutPlacesCity,
         mapContainer,
         map
     } = initialData;

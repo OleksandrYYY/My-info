@@ -13,14 +13,16 @@ export async function fetchApiPlacesCity(cityName) {
     
     try {
         const response = await fetch(url, options);
+
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
-        }
+        };
+
         const data = await response.json();
-        console.log(data);
+
         return data.results || [];
     } catch (error) {
         console.error("Помилка при отриманні місць із Foursquare:", error);
         return [];
-    }
+    };
 };

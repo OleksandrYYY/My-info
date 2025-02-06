@@ -1,7 +1,6 @@
 import * as UI from "../UI/index.js";
 
 export function addMarkersToMap(places, initialData) {
-
     const {
         map,
         markers
@@ -20,14 +19,15 @@ export function addMarkersToMap(places, initialData) {
     places.forEach((place) => {
         const lat = place.geocodes?.main?.latitude;
         const lng = place.geocodes?.main?.longitude;
+
         if (lat == null || lng == null) {
-            console.warn("Пропускаємо place без координат:", place.name);
+            console.error("Немає всіх координат:", place.name);
             return;
         };
 
         const popupHTML = `
             <h3>${place.name}</h3>
-            <p>${place.location.address || 'Немає адреси'}</p>
+            <p>${place.location.address || "Немає адреси"}</p>
             <img src="${place.categories[0].icon.prefix}bg_64${place.categories[0].icon.suffix}" alt="${place.categories[0].name} Icon" />
         `;
 
@@ -40,7 +40,6 @@ export function addMarkersToMap(places, initialData) {
         bounds.extend([lng, lat]);
 
         marker.getElement().addEventListener("click", () => {
-            // const { startMarker } = initialData;
             const coordsStartMarker = [lng, lat];
             
             if (!initialData.startMarker) {

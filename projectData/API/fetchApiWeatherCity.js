@@ -11,12 +11,9 @@ export function fetchApiWeatherCity(selectCity, conditionWeatherCity, formWeathe
             try {
                 const response = await fetch(`${API_BASE_URL}/current.json?key=${API_KEY}&q=${selectCityName}`);
                 const dataWeatherCity = await response.json();
-                console.log(dataWeatherCity);
 
                 if (dataWeatherCity.error) {
                     console.error("API Error:", dataWeatherCity.error.message);
-                    formWeather.append(conditionWeatherCity);
-                    conditionWeatherCity.innerHTML = `<p style="color: red;">Дані про місто ${selectCityName} не знайдені.</p>`
                     return;
                 };
 

@@ -14,10 +14,6 @@ export function addMarkersOfCitiesToMap(initialData, allCoords) {
     for (const cityData of allCoords) {
         const { lat, lng, city } = cityData;
 
-        if (!lat || !lng) {
-            continue;
-        };
-
         const marker = new mapboxgl.Marker()
             .setLngLat([lng, lat])
             .setPopup(new mapboxgl.Popup({ offset: 25 }).setText(`Місто: ${city}`))

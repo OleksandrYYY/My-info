@@ -2,12 +2,15 @@ import { API_GEONAMES_USERNAME } from "../generalData/constants.js";
 
 export async function fetchApiGetCityCoords(cityName, countryCode) {
     const username = API_GEONAMES_USERNAME;
-    const url = `http://api.geonames.org/searchJSON
+    const url = 
+    `
+    http://api.geonames.org/searchJSON
     ?name=${encodeURIComponent(cityName)}
     &country=${countryCode}
     &maxRows=1
-    &username=${username}`.replace(/\s/g, '');
-    // ?name_equals=${encodeURIComponent(cityName)}
+    &username=${username}
+    `
+    .replace(/\s/g, "");
 
     try {
         const response = await fetch(url);

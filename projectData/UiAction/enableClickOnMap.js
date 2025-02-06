@@ -7,20 +7,11 @@ export function enableClickOnMap(initialData) {
         console.error("Карта не ініціалізована!");
         return;
     };
-    // map.on("load", () => {
-    //     const layers = map.getStyle().layers;
-    // console.log("Всі шари карти:", layers);
-
-    // layers.forEach((layer, index) => {
-    //     console.log(`${index + 1}. ID шару: ${layer.id}, Тип шару: ${layer.type}`);
-    // });
-    // });
 
     map.on("click", (event) => {
         const infoAboutPoint = map.queryRenderedFeatures(event.point, {
             layers: ["poi-label", "settlement-label", "building", "building-outline", "building-number-label"]
         });
-        console.log(infoAboutPoint);
 
         if (!infoAboutPoint.length) {
             console.log("Клікнули в порожнє місце, об'єктів немає.");
@@ -41,15 +32,7 @@ export function enableClickOnMap(initialData) {
                 UiAction.getLocationCoordinates(initialData, placeName, [lng, lat]);
                 break;
             default:
-                console.log("Це щось інше");
+                console.log("Ще щось інше");
         };
     });
 };
-
-// const validLayers = ["settlement-label", "poi-label", "building", "building-outline", "building-number-label"];
-
-// if (validLayers.includes(layerId)) {
-//     UiAction.getLocationCoordinates(initialData, placeName, [lng, lat]);
-// } else {
-//     console.log("Це щось інше");
-// }

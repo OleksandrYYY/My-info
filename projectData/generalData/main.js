@@ -6,16 +6,14 @@ import * as API from "../API/index.js";
 import * as generalData from "../generalData/index.js";
 
 document.addEventListener("DOMContentLoaded", async() => {
-    // localStorage.clear();
     const initialData = generalData.getInitialData();
-    const {elemInputCountryName, elemInputCityName, selectCountry, selectCity, tableInformationOfCountries, blockInfoAboutPlacesCity, btnShowPlaces, mapContainer} = initialData;
+    const {elemInputCountryName, elemInputCityName, selectCountry, selectCity, btnShowPlaces} = initialData;
 
     btnShowPlaces.textContent = "Показати популярні місця";
     btnShowPlaces.style.display = "none";
 
     try {
         initialData.allCountries = await API.fetchApiGetCountries(initialData);
-        console.log(initialData.allCountries);
     } catch (error) {
         console.error("Помилка при завантаженні країн:", error);
     };

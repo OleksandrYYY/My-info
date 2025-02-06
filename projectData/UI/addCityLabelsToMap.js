@@ -2,8 +2,7 @@ import * as UI from "../UI/index.js";
 
 export function addCityLabelsToMap(initialData, allCoords) {
     const {
-        map,
-        startMarker
+        map
     } = initialData;
 
     initialData.markers.forEach((marker) => marker.remove());
@@ -33,10 +32,6 @@ export function addCityLabelsToMap(initialData, allCoords) {
                 UI.showRouteOnMap(map, startCoordsMarker, endCoordsMarker);
                     
                 initialData.startMarker = null;
-                    
-                // markers.forEach((marker) => {
-                //     marker.getElement().classList.remove("marker-selected-start");
-                // });
             };
         });
 
