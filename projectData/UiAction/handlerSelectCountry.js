@@ -67,7 +67,9 @@ export async function handlerSelectCountry(initialData, event) {
                     UI.updateProgressBar(bar, text, percent);
                 }
             );
+
             UI.finishProgressBar(container, bar, text);
+            
             initialData.citiesCoords = allCoords;
 
             let center = [0, 0];

@@ -17,7 +17,7 @@ export function showTableVisitedDataCountries(tableInformationOfCountries) {
             tableRowElem.append(infoAboutNameCountry);
     
             const infoAboutCapital = document.createElement("td");
-            infoAboutCapital.textContent = country.capital;
+            infoAboutCapital.textContent = country.capital || "Немає";
             tableRowElem.append(infoAboutCapital);
     
             const infoAboutCodeCountry = document.createElement("td");
