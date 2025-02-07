@@ -16,7 +16,10 @@ export async function handlerSelectCountry(initialData, event) {
         mapContainer,
         createSelectStylesMap,
         map,
-        allCountries
+        allCountries,
+        container,
+        bar,
+        text
     } = initialData;
     
     const selectCountryName = event.target.value;
@@ -37,6 +40,8 @@ export async function handlerSelectCountry(initialData, event) {
 
     UiAction.saveVisitedCountries(foundCountry);
 
+    UI.showProgressBar(container, bar, text);
+
     if (selectCountryName) {
         try {
             initialData.citiesSelectedCountry = await API.fetchApiCitiesByCountry(selectCountryName);
@@ -55,7 +60,14 @@ export async function handlerSelectCountry(initialData, event) {
             UI.showListCities(initialData.citiesSelectedCountry, initialData, countryCode);
             selectCity.disabled = false;
 
-            const allCoords = await API.fetchApiAllCoordsCities(initialData.citiesSelectedCountry, initialData.selectedCCA2);
+            const allCoords = await API.fetchApiAllCoordsCities(
+                initialData.citiesSelectedCountry, 
+                initialData.selectedCCA2,
+                (percent) => {
+                    UI.updateProgressBar(bar, text, percent);
+                }
+            );
+            UI.finishProgressBar(container, bar, text);
             initialData.citiesCoords = allCoords;
 
             let center = [0, 0];
@@ -85,6 +97,7 @@ export async function handlerSelectCountry(initialData, event) {
             return initialData.citiesSelectedCountry;
         } catch (error) {
             console.error("Помилка при завантаженні міст:", error);
+            UI.finishProgressBar(container, bar, text);
         };
     };
 };

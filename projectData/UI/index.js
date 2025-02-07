@@ -14,3 +14,6 @@ export { showRouteOnMap } from "./showRouteOnMap.js";
 export { addMarkersOfCitiesToMap } from "./addMarkersOfCitiesToMap.js";
 export { addCityLabelsToMap } from "./addCityLabelsToMap.js";
 export { getLayersInfo } from "./getLayersInfo.js";
+export { showProgressBar } from "./showProgressBar.js";
+export { updateProgressBar } from "./updateProgressBar.js";
+export { finishProgressBar } from "./finishProgressBar.js";

@@ -35,6 +35,9 @@ export function getInitialData() {
     let startMarker = null;
     let allCountries = null;
     let citiesSelectedCountry = null;
+    const container = document.getElementById("loading-bar-container");
+    const bar = document.getElementById("loading-bar");
+    const text = document.getElementById("loading-bar-text");
 
     return {
         formWeather,
@@ -62,6 +65,9 @@ export function getInitialData() {
         markers,
         startMarker,
         allCountries,
-        citiesSelectedCountry
+        citiesSelectedCountry,
+        container,
+        bar,
+        text
     };
 };

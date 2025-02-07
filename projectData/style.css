@@ -53,6 +53,34 @@ body {
   background-color: #f0f9ff;
   outline: none;
 }
+
+#loading-bar-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  background: rgba(0,0,0,0.7);
+  border-radius: 8px;
+  padding: 10px;
+  text-align: center;
+  z-index: 9999;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+#loading-bar {
+  width: 0%;
+  height: 12px;
+  background: linear-gradient(to right, #66b2ff, #0d8af0);
+  border-radius: 6px;
+  transition: width 0.2s;
+  margin-bottom: 8px;
+}
+
+#loading-bar-text {
+  color: #fff;
+  font-weight: 500;
+}
   
 table {
   width: 100%;
